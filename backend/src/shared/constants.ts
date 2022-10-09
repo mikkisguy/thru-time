@@ -7,6 +7,9 @@ export const IS_PRODUCTION = ENV === "production";
 export const SERVER_PORT = process.env.SERVER_PORT;
 export const DEV_PORT = process.env.DEV_PORT;
 
+export const MINUTE = 60000;
+export const SECOND = 1000;
+
 export const SSL = {
   CERT_PATH: process.env.SSL_CERT_PATH,
   KEY_PATH: process.env.SSL_KEY_PATH,
