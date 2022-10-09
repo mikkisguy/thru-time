@@ -1,18 +1,19 @@
-import * as path from "path";
-import { fileURLToPath } from "url";
+import { PathOrFileDescriptor } from "fs";
 
 export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
-// export const DIR_NAME = path.dirname(fileURLToPath(import.meta.url));
 export const SERVER_PORT = process.env.SERVER_PORT;
 export const DEV_PORT = process.env.DEV_PORT;
 
 export const MINUTE = 60000;
 export const SECOND = 1000;
 
-export const SSL = {
-  CERT_PATH: process.env.SSL_CERT_PATH,
-  KEY_PATH: process.env.SSL_KEY_PATH,
+export const SSL: {
+  CERT_PATH: PathOrFileDescriptor;
+  KEY_PATH: PathOrFileDescriptor;
+} = {
+  CERT_PATH: process.env.SSL_CERT_PATH as PathOrFileDescriptor,
+  KEY_PATH: process.env.SSL_KEY_PATH as PathOrFileDescriptor,
 };
 
 export const JWT = {

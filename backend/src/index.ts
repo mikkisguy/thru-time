@@ -1,11 +1,21 @@
-import express, { Response, Application } from "express";
+import express, { Response, Application, NextFunction } from "express";
 import helmet from "helmet";
-import { LOG_STYLING, MINUTE, SERVER_PORT } from "./shared/constants";
-import { logger } from "./shared/utils";
+import { LOG_STYLING, MINUTE, SERVER_PORT, SSL } from "./shared/constants";
+import { logger, requestErrorHandler } from "./shared/utils";
 import cors from "cors";
 import SlowDown from "express-slow-down";
+import https from "https";
+import * as fs from "fs";
 
 const app: Application = express();
+
+const httpsServer = https.createServer(
+  {
+    cert: fs.readFileSync(SSL.CERT_PATH),
+    key: fs.readFileSync(SSL.KEY_PATH),
+  },
+  app
+);
 
 app.use(helmet());
 
@@ -23,12 +33,18 @@ app.use(
   })
 );
 
-app.get("/", (_, res: Response): void => {
-  res.send({ message: "Hello World!" });
+app.get("/", (_, res: Response, next: NextFunction): void => {
+  try {
+    res.send({ message: "Hello World!" });
+  } catch (error) {
+    next(error);
+  }
 });
 
-app.listen(SERVER_PORT, (): void => {
+app.use(requestErrorHandler);
+
+httpsServer.listen(SERVER_PORT, (): void => {
   logger(
-    `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ***${LOG_STYLING.RESET}`
+    `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${SERVER_PORT} ***${LOG_STYLING.RESET}`
   );
 });
