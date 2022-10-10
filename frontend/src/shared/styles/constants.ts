@@ -9,4 +9,5 @@ export const COLORS = {
 export const FONTS = {
   PRIMARY: "'Source Code Pro', monospace",
   SECONDARY: "'DM Sans', sans-serif",
+  TERTIARY: "'Montserrat', sans-serif",
 };
