@@ -32,7 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.16'
-          context: ./frontend/
+          working-directory: frontend
       - run: yarn install --pure-lockfile
       - run: yarn build
 
