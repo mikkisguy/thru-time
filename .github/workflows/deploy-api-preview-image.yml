@@ -12,7 +12,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}-api-preview
 
 jobs:
-  build-and-push-image:
+  build-and-push-preview-image:
+    name: Build and push preview image
     runs-on: ubuntu-latest
     permissions:
       contents: read

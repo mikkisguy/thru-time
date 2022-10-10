@@ -12,10 +12,14 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-frontend
+  VITE_PREVIEW_SITE: false
+  VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
 jobs:
   build-and-push-image:
+    name: Build and push image
     runs-on: ubuntu-latest
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -28,6 +32,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.16'
+          context: ./frontend/
       - run: yarn install --pure-lockfile
       - run: yarn build
 
