@@ -9,7 +9,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <div>
-        {IS_PREVIEW_SITE && <p>[preview]</p>}
+        {IS_PREVIEW_SITE && <p>[preview site]</p>}
         <h1>Hello world!</h1>
       </div>
     </>
