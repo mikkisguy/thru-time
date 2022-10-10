@@ -1,6 +1,6 @@
 import express, { Response, Application, NextFunction } from "express";
 import helmet from "helmet";
-import { LOG_STYLING, MINUTE, SERVER_PORT, SSL } from "./shared/constants";
+import { LOG_STYLING, MINUTE, EXPRESS_PORT, SSL } from "./shared/constants";
 import { logger, requestErrorHandler } from "./shared/utils";
 import cors from "cors";
 import SlowDown from "express-slow-down";
@@ -43,8 +43,8 @@ app.get("/", (_, res: Response, next: NextFunction): void => {
 
 app.use(requestErrorHandler);
 
-httpsServer.listen(SERVER_PORT, (): void => {
+httpsServer.listen(EXPRESS_PORT, (): void => {
   logger(
-    `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${SERVER_PORT} ***${LOG_STYLING.RESET}`
+    `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${LOG_STYLING.RESET}`
   );
 });

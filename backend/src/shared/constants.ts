@@ -2,8 +2,7 @@ import { PathOrFileDescriptor } from "fs";
 
 export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
-export const SERVER_PORT = process.env.SERVER_PORT;
-export const DEV_PORT = process.env.DEV_PORT;
+export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
 export const MINUTE = 60000;
 export const SECOND = 1000;
