@@ -31,10 +31,12 @@ jobs:
           ref: preview
           path: frontend
 
-      - name: Build frontend
+      - name: Setup Node 16
         uses: actions/setup-node@v3
         with:
           node-version: '16.16'
+
+      - name: Build frontend
         run: |
           cd frontend
           yarn install --pure-lockfile
