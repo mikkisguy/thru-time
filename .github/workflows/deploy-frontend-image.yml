@@ -35,6 +35,7 @@ jobs:
         with:
           node-version: '16.16'
           working-directory: frontend
+      - run: ls -l
       - run: yarn install --pure-lockfile
       - run: yarn build
 
