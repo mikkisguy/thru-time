@@ -4,6 +4,10 @@ export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
 export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
+export const POSTGRES_USER = process.env.POSTGRES_USER;
+export const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD;
+export const POSTGRES_DB = process.env.POSTGRES_DB;
+
 export const MINUTE = 60000;
 export const SECOND = 1000;
 
