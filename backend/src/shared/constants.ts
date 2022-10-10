@@ -4,8 +4,16 @@ export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
 export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
-export const MINUTE = 60000;
-export const SECOND = 1000;
+export const TIME = {
+  MINUTE: 60000,
+  SECOND: 1000,
+};
+
+export const DB = {
+  NAME: process.env.POSTGRES_DB,
+  USER: process.env.POSTGRES_USER,
+  PASSWORD: process.env.POSTGRES_PASSWORD,
+};
 
 export const SSL: {
   CERT_PATH: PathOrFileDescriptor;
@@ -18,12 +26,6 @@ export const SSL: {
 export const JWT = {
   SECRET: process.env.JWT_SECRET,
   ALGORITHM: "HS256",
-};
-
-export const DB = {
-  NAME: process.env.DB_NAME,
-  USER: process.env.DB_USER,
-  PASSWORD: process.env.DB_PASSWORD,
 };
 
 export const LOG_STYLING = {
