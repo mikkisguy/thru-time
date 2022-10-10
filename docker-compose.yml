@@ -20,7 +20,7 @@ services:
     depends_on:
       - thru-time-postgres
     container_name: thru-time-api
-    image: thru-time-api
+    image: ghcr.io/mikkisguy/thru-time-api:latest
     env_file:
       - .env
     environment:
@@ -38,7 +38,7 @@ services:
     restart: always
 
   thru-time-frontend:
-    image: thru-time-frontend
+    image: ghcr.io/mikkisguy/thru-time-frontend:latest
     container_name: thru-time-frontend
     depends_on:
       - thru-time-api

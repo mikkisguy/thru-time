@@ -20,7 +20,7 @@ services:
     depends_on:
       - thru-time-postgres-preview
     container_name: thru-time-api-preview
-    image: thru-time-api-preview
+    image: ghcr.io/mikkisguy/thru-time-api:preview
     env_file:
       - .env
     environment:
@@ -39,7 +39,7 @@ services:
 
   thru-time-frontend-preview:
     image: thru-time-frontend-preview
-    container_name: thru-time-frontend-preview
+    image: ghcr.io/mikkisguy/thru-time-frontend:preview
     depends_on:
       - thru-time-api-preview
     env_file:
