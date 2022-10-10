@@ -15,6 +15,7 @@ jobs:
   build-and-push-preview-image:
     name: Build and push preview image
     runs-on: ubuntu-latest
+    environment: preview
     permissions:
       contents: read
       packages: write
