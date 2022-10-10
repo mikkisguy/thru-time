@@ -6,7 +6,8 @@ console.log("API_URL:", API_URL);
 const App = () => {
   return (
     <div>
-      <h1>Hello world</h1>
+      {IS_PREVIEW_SITE && <p>[preview]</p>}
+      <h1>Hello world!</h1>
     </div>
   );
 };
