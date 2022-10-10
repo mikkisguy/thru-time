@@ -38,6 +38,7 @@ jobs:
       - name: Build frontend
         run: |
           cd frontend
+          ls -l
           yarn install --pure-lockfile
           yarn build
 
