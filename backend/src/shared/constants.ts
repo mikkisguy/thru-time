@@ -4,8 +4,10 @@ export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
 export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
-export const MINUTE = 60000;
-export const SECOND = 1000;
+export const TIME = {
+  MINUTE: 60000,
+  SECOND: 1000,
+};
 
 export const DB = {
   NAME: process.env.POSTGRES_DB,
