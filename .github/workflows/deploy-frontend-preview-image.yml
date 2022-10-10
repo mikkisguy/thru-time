@@ -1,4 +1,4 @@
-name: Create and publish frontend image
+name: Deploy preview frontend image
 
 on:
   push:
