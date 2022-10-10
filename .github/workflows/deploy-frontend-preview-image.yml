@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: preview
+          path: frontend
 
       - name: Build frontend
         uses: actions/setup-node@v3
@@ -54,7 +55,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./frontend/
+          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
