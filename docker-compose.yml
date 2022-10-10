@@ -42,11 +42,6 @@ services:
     container_name: thru-time-frontend
     depends_on:
       - thru-time-api
-    env_file:
-      - .env
-    environment:
-      - VITE_API_URL=$VITE_API_URL
-      - VITE_PREVIEW_SITE=false
     ports:
       - $REACT_PORT:80
     restart: always
