@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   thru-time-postgres:
-    image: postgres:14
     container_name: thru-time-postgres
+    image: postgres:14
     env_file:
       - .env
     environment:
@@ -17,9 +17,9 @@ services:
     restart: always
 
   thru-time-api:
+    container_name: thru-time-api
     depends_on:
       - thru-time-postgres
-    container_name: thru-time-api
     image: ghcr.io/mikkisguy/thru-time-api:latest
     env_file:
       - .env
@@ -38,10 +38,18 @@ services:
     restart: always
 
   thru-time-frontend:
-    image: ghcr.io/mikkisguy/thru-time-frontend:latest
     container_name: thru-time-frontend
     depends_on:
       - thru-time-api
+    image: ghcr.io/mikkisguy/thru-time-frontend:latest
+    env_file:
+      - .env
+    environment:
+      - SSL_CERT_PATH=$SSL_CERT_PATH
+      - SSL_KEY_PATH=$SSL_KEY_PATH
+    volumes:
+      - $SSL_CERT_PATH:$SSL_CERT_PATH
+      - $SSL_KEY_PATH:$SSL_KEY_PATH
     ports:
       - $REACT_PORT:443
     restart: always

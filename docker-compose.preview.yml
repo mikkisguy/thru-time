@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   thru-time-postgres-preview:
-    image: postgres:14
     container_name: thru-time-postgres-preview
+    image: postgres:14
     env_file:
       - .env
     environment:
@@ -17,9 +17,9 @@ services:
     restart: always
 
   thru-time-api-preview:
+    container_name: thru-time-api-preview
     depends_on:
       - thru-time-postgres-preview
-    container_name: thru-time-api-preview
     image: ghcr.io/mikkisguy/thru-time-api:preview
     env_file:
       - .env
@@ -38,9 +38,18 @@ services:
     restart: always
 
   thru-time-frontend-preview:
-    image: ghcr.io/mikkisguy/thru-time-frontend:preview
+    container_name: thru-time-frontend-preview
     depends_on:
       - thru-time-api-preview
+    image: ghcr.io/mikkisguy/thru-time-frontend:preview
+    env_file:
+      - .env
+    environment:
+      - SSL_CERT_PATH=$SSL_CERT_PATH
+      - SSL_KEY_PATH=$SSL_KEY_PATH
+    volumes:
+      - $SSL_CERT_PATH:$SSL_CERT_PATH
+      - $SSL_KEY_PATH:$SSL_KEY_PATH
     ports:
       - $PREVIEW_REACT_PORT:443
     restart: always
