@@ -6,6 +6,10 @@ RUN addgroup thru-time-api && \
     adduser -S -G thru-time-api thru-time-api && \
     chown -R thru-time-api /thru-time-api
 
+ENV TZ=Europe/Helsinki
+RUN apk add --no-cache tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apk --no-cache add yarn --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
 WORKDIR /thru-time-api

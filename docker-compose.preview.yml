@@ -38,8 +38,6 @@ services:
     volumes:
       - $SSL_CERT_PATH:$SSL_CERT_PATH
       - $SSL_KEY_PATH:$SSL_KEY_PATH
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
     ports:
       - $PREVIEW_EXPRESS_PORT:$PREVIEW_EXPRESS_PORT
     restart: always
