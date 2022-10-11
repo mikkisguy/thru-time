@@ -1,11 +1,12 @@
 import express, { Response, Application, NextFunction } from "express";
 import helmet from "helmet";
-import { LOG_STYLING, EXPRESS_PORT, SSL, TIME } from "./shared/constants";
+import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
 import { logger, requestErrorHandler } from "./shared/utils";
 import cors from "cors";
 import SlowDown from "express-slow-down";
 import https from "https";
 import * as fs from "fs";
+import main from "./routes/main";
 
 const app: Application = express();
 
@@ -29,17 +30,14 @@ app.use(speedLimiter);
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin:
+      ENV !== undefined
+        ? ["https://preview.mikkis.fi", "https://new.mikkis.fi"]
+        : ["http://localhost:5173"],
   })
 );
 
-app.get("/", (_, res: Response, next: NextFunction): void => {
-  try {
-    res.send({ message: "Hello World!" });
-  } catch (error) {
-    next(error);
-  }
-});
+app.get("/", main);
 
 app.use(requestErrorHandler);
 
