@@ -6,10 +6,10 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx-default.conf.template /etc/nginx/conf.d/default.conf.template
 
 COPY nginx/docker-entrypoint.sh /
-RUN ls -l
+RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
 
-RUN cat /etc/nginx/conf.d/default.conf
+RUN ls -l
 
 EXPOSE ${REACT_PORT}
