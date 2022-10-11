@@ -14,7 +14,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}-frontend
   VITE_PREVIEW_SITE: true
   VITE_API_URL: ${{ secrets.VITE_API_URL }}
-  VITE_LATEST_COMMIT_SHA: $GITHUB_SHA
+  VITE_LATEST_COMMIT_SHA: ${{ github.sha }}
 
 jobs:
   build-and-push-preview-image:
