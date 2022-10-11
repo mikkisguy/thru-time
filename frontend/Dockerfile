@@ -10,7 +10,4 @@ RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
 
-RUN cd /etc/nginx/conf.d
-RUN ls -l
-
 EXPOSE ${REACT_PORT}
