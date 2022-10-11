@@ -2,8 +2,8 @@ version: "3.5"
 
 services:
   thru-time-postgres-preview:
-    container_name: thru-time-postgres-preview
     image: postgres:14
+    container_name: thru-time-postgres-preview
     env_file:
       - .env
     environment:
@@ -17,10 +17,12 @@ services:
     restart: always
 
   thru-time-api-preview:
-    container_name: thru-time-api-preview
     depends_on:
       - thru-time-postgres-preview
+    container_name: thru-time-api-preview
     image: ghcr.io/mikkisguy/thru-time-api:preview
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     env_file:
       - .env
     environment:
@@ -42,6 +44,8 @@ services:
     depends_on:
       - thru-time-api-preview
     image: ghcr.io/mikkisguy/thru-time-frontend:preview
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     env_file:
       - .env
     environment:

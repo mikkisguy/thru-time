@@ -21,6 +21,8 @@ services:
     depends_on:
       - thru-time-postgres
     image: ghcr.io/mikkisguy/thru-time-api:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     env_file:
       - .env
     environment:
@@ -42,6 +44,8 @@ services:
     depends_on:
       - thru-time-api
     image: ghcr.io/mikkisguy/thru-time-frontend:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     env_file:
       - .env
     environment:
