@@ -40,10 +40,10 @@ services:
     restart: always
 
   thru-time-frontend-preview:
+    image: ghcr.io/mikkisguy/thru-time-frontend:preview
     container_name: thru-time-frontend-preview
     depends_on:
       - thru-time-api-preview
-    image: ghcr.io/mikkisguy/thru-time-frontend:preview
     labels:
       - com.centurylinklabs.watchtower.enable=true
     env_file:
