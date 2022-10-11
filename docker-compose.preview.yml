@@ -39,6 +39,7 @@ services:
 
   thru-time-frontend-preview:
     image: ghcr.io/mikkisguy/thru-time-frontend:preview
+    container_name: thru-time-frontend-preview
     depends_on:
       - thru-time-api-preview
     ports:
