@@ -16,6 +16,5 @@ COPY --chown=thru-time-api:thru-time-api . .
 
 RUN yarn install --pure-lockfile
 
-ENV NODE_ENV=production
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]

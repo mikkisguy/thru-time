@@ -12,6 +12,8 @@ services:
       - POSTGRES_DB=$PREVIEW_POSTGRES_DB
     volumes:
       - ./database/preview-data:/var/lib/postgresql/data/
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - $PREVIEW_POSTGRES_PORT:5432
     restart: always
@@ -26,8 +28,8 @@ services:
     env_file:
       - .env
     environment:
-      - EXPRESS_PORT=$PREVIEW_EXPRESS_PORT
       - NODE_ENV=preview
+      - EXPRESS_PORT=$PREVIEW_EXPRESS_PORT
       - POSTGRES_USER=$PREVIEW_POSTGRES_USER
       - POSTGRES_PASSWORD=$PREVIEW_POSTGRES_PASSWORD
       - POSTGRES_DB=$PREVIEW_POSTGRES_DB
@@ -36,6 +38,8 @@ services:
     volumes:
       - $SSL_CERT_PATH:$SSL_CERT_PATH
       - $SSL_KEY_PATH:$SSL_KEY_PATH
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - $PREVIEW_EXPRESS_PORT:$PREVIEW_EXPRESS_PORT
     restart: always
