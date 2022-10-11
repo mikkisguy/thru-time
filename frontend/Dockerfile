@@ -3,6 +3,10 @@ FROM nginx:alpine
 COPY dist /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d
+COPY nginx/nginx-default.conf.template /etc/nginx/conf.d/default.conf.template
+
+COPY nginx/docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
 
 EXPOSE ${REACT_PORT}
