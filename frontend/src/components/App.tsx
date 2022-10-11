@@ -1,12 +1,6 @@
-import {
-  API_URL,
-  IS_PREVIEW_SITE,
-  LATEST_COMMIT_SHA,
-} from "../shared/constants";
+import { IS_PREVIEW_SITE, LATEST_COMMIT_SHA } from "../shared/constants";
 import GlobalStyle from "../shared/styles/globalStyle";
 import PreviewNotification from "./PreviewNotification";
-
-console.log("API_URL:", API_URL);
 
 const App = () => {
   return (
