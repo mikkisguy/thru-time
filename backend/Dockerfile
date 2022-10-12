@@ -1,4 +1,4 @@
-FROM node:16.16-alpine
+FROM node:16.17.1-alpine
 
 RUN mkdir -p /thru-time-api/node_modules
 
