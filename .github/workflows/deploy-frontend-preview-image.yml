@@ -36,10 +36,14 @@ jobs:
         with:
           node-version: '16.16'
 
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S %Z')" >> $GITHUB_ENV
+
       - name: Build frontend
         run: |
           cd frontend
           yarn install --pure-lockfile
+          export VITE_UPDATED_ON=${{ env.NOW }}
           yarn build
 
       - name: Log in to the Container registry
