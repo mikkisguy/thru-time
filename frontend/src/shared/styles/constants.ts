@@ -1,5 +1,6 @@
 export const COLORS = {
   BLACK: { DEFAULT: "#0b0c10", LIGHT: "#1f2833" },
+  WHITE: { DEFAULT: "#ebecf0", DARK: "#9c9c9c" },
   GRAY: { DEFAULT: "#2c3531", LIGHT: "#c5c6c7" },
   TURQUOISE: { DEFAULT: "#45a29e", LIGHT: "#66fcf1", DARK: "#116466" },
   CYAN: { DEFAULT: "#d1e8e2" },
@@ -9,5 +10,4 @@ export const COLORS = {
 export const FONTS = {
   PRIMARY: "'Source Code Pro', monospace",
   SECONDARY: "'DM Sans', sans-serif",
-  TERTIARY: "'Montserrat', sans-serif",
 };
