@@ -39,20 +39,32 @@ const PreviewTopBar = styled.div`
   justify-content: space-evenly;
   width: 100%;
   background-color: ${COLORS.GRAY.DEFAULT};
-  font-family: ${FONTS.TERTIARY};
-  font-size: 1em;
-  color: ${COLORS.TURQUOISE.DEFAULT};
-  padding: 5px 0;
+  font-family: ${FONTS.SECONDARY};
+  font-size: 0.8em;
+  color: ${COLORS.WHITE.DARK};
+  padding: 10px 0;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
 `;
 
 const PreviewSite = styled.span`
   font-weight: bold;
+  color: ${COLORS.WHITE.DEFAULT};
 `;
 
 const CommitLink = styled.a`
-  color: ${COLORS.TURQUOISE.DEFAULT};
+  color: ${COLORS.WHITE.DARK};
+  text-decoration: none;
 
   :hover {
-    text-decoration: none;
+    text-decoration: underline;
+  }
+
+  @media only screen and (max-width: 500px) {
+    display: none;
   }
 `;
