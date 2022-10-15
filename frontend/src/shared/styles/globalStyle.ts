@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { COLORS, FONTS } from "./constants";
 import cssReset from "./cssReset";
 import fonts from "./fonts";
 
@@ -8,13 +7,7 @@ const GlobalStyle = createGlobalStyle`
     ${cssReset}
 
     body {
-        background-color: #47505e;
-    }
-    
-    h1 {
-        font-family: ${FONTS.PRIMARY};
-        color: ${COLORS.PEACH.DEFAULT};
-        text-align: center;
+        background-color: ${({ theme }) => theme.colors.background};
     }
 `;
 
