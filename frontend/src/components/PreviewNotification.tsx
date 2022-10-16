@@ -1,7 +1,6 @@
 import { format, parseISO, add } from "date-fns";
 import styled from "styled-components";
 import { LATEST_COMMIT_SHA, UPDATED_ON } from "../shared/constants";
-import { FONTS, COLORS } from "../shared/styles/constants";
 
 const PreviewNotification = () => {
   console.log("UPDATED_ON", UPDATED_ON);
@@ -38,10 +37,9 @@ const PreviewTopBar = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  background-color: ${COLORS.GRAY.DEFAULT};
-  font-family: ${FONTS.SECONDARY};
-  font-size: 0.8em;
-  color: ${COLORS.WHITE.DARK};
+  font: ${({ theme }) => theme.fonts.meta};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.bodyText};
   padding: 10px 0;
 
   @media only screen and (max-width: 500px) {
@@ -52,12 +50,12 @@ const PreviewTopBar = styled.div`
 `;
 
 const PreviewSite = styled.span`
-  font-weight: bold;
-  color: ${COLORS.WHITE.DEFAULT};
+  font: ${({ theme }) => theme.fonts.metaBold};
+  color: ${({ theme }) => theme.colors.bodyText};
 `;
 
 const CommitLink = styled.a`
-  color: ${COLORS.WHITE.DARK};
+  color: ${({ theme }) => theme.colors.bodyTextSecondary};
   text-decoration: none;
 
   :hover {

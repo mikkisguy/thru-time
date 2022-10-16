@@ -28,7 +28,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro Bold";
     src: url("${SourceCodeProBold}") format("woff2");
     font-weight: bold;
     font-style: normal;
@@ -36,7 +36,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro Bold Italic";
     src: url("${SourceCodeProBoldItalic}") format("woff2");
     font-weight: bold;
     font-style: italic;
@@ -44,7 +44,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro Italic";
     src: url("${SourceCodeProItalic}") format("woff2");
     font-weight: normal;
     font-style: italic;
@@ -52,7 +52,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro Light";
     src: url("${SourceCodeProLight}") format("woff2");
     font-weight: 300;
     font-style: normal;
@@ -60,7 +60,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Source Code Pro Light Italic";
     src: url("${SourceCodeProLightItalic}") format("woff2");
     font-weight: 300;
     font-style: italic;
@@ -76,7 +76,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "DM Sans";
+    font-family: "DM Sans Bold";
     src: url("${DMSansBold}") format("woff2");
     font-weight: bold;
     font-style: normal;
@@ -84,7 +84,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "DM Sans";
+    font-family: "DM Sans Bold Italic";
     src: url("${DMSansBoldItalic}") format("woff2");
     font-weight: bold;
     font-style: italic;
@@ -92,7 +92,7 @@ const fonts = css`
   }
 
   @font-face {
-    font-family: "DM Sans";
+    font-family: "DM Sans Italic";
     src: url("${DMSansItalic}") format("woff2");
     font-weight: normal;
     font-style: italic;

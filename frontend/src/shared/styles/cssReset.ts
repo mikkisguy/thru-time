@@ -25,6 +25,7 @@ const cssReset = css`
     height: 100%;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    font-size: 62.5%;
   }
 
   img,
