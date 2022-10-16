@@ -18,18 +18,20 @@ type SpacingStyles = {
 type FontStyles = {
   h1: string;
   body: string;
+  bodyBold: string;
   meta: string;
   metaBold: string;
 };
 
 export type ColorStyles = {
-  themeToggle: string;
+  themeIcon: string;
   background: string;
   backgroundSecondary: string;
   heading: string;
   bodyText: string;
   bodyTextSecondary: string;
   highlight: string;
+  outline: string;
   shadow: string;
 };
 

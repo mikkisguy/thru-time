@@ -17,6 +17,7 @@ export const base: BaseStyles = {
   fonts: {
     h1: "2rem/2 'Source Code Pro Bold', monospace",
     body: "1rem/1.8 'DM Sans', sans-serif",
+    bodyBold: "1rem/1.8 'DM Sans Bold', sans-serif",
     meta: "0.8rem/1.5 'DM Sans', sans-serif",
     metaBold: "0.8rem/1.5 'DM Sans Bold', sans-serif",
   },
@@ -24,23 +25,25 @@ export const base: BaseStyles = {
 
 export const themes: Themes = {
   light: {
-    themeToggle: "#e2a54c",
+    themeIcon: "#e2a54c",
     background: "#ebecf0",
     backgroundSecondary: "#fff",
     heading: "#443616",
     bodyText: "#0b0c10",
     bodyTextSecondary: "#1f2833",
     highlight: "#116466",
+    outline: "#858585",
     shadow: "#b2b2b2",
   },
   dark: {
-    themeToggle: "#858585",
+    themeIcon: "#858585",
     background: "#1f2833",
     backgroundSecondary: "#12181e",
     heading: "#d9b08c",
     bodyText: "#b2b2b2",
     bodyTextSecondary: "#858585",
     highlight: "#45a29e",
+    outline: "#858585",
     shadow: "#0b0c10",
   },
 };

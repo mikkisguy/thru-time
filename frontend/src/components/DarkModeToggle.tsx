@@ -58,13 +58,17 @@ const Toggle = styled.div`
   height: 2rem;
   transition: background-color 0.25s;
   width: 4.5rem;
+
+  :hover {
+    outline: 2px solid ${({ theme }) => theme.colors.outline}80;
+  }
 `;
 
 const ToggleForm = styled.form`
   margin-top: ${({ theme }) => theme.spacing.xl};
 
   :focus-within ${Toggle} {
-    outline: 2px solid ${({ theme }) => theme.colors.themeToggle}80;
+    outline: 2px solid ${({ theme }) => theme.colors.outline}80;
   }
 `;
 
@@ -79,7 +83,7 @@ const ToggleLabel = styled.label`
 `;
 
 const ToggleIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.colors.themeToggle};
+  color: ${({ theme }) => theme.colors.themeIcon};
   transition: transform 0.25s;
   padding: ${({ theme }) => theme.spacing.xs};
   opacity: 0.5;
@@ -91,7 +95,7 @@ const ToggleIcon = styled(FontAwesomeIcon)`
 
 const ToggleButton = styled(FontAwesomeIcon)`
   transform: translate(0.3em, 0);
-  color: ${({ theme }) => theme.colors.themeToggle};
+  color: ${({ theme }) => theme.colors.themeIcon};
   transition: transform 0.25s;
   padding: ${({ theme }) => theme.spacing.xs};
 
@@ -101,5 +105,8 @@ const ToggleButton = styled(FontAwesomeIcon)`
 `;
 
 const LabelText = styled.span`
-  display: none;
+  font: ${({ theme }) => theme.fonts.meta};
+  opacity: 0;
+  position: absolute;
+  left: -999vw;
 `;
