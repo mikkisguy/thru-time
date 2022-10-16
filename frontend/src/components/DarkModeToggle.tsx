@@ -51,23 +51,31 @@ const DarkModeToggle = () => {
 
 export default DarkModeToggle;
 
+const Toggle = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  box-shadow: ${({ theme }) => theme.colors.shadow} 0 0 0.3rem 0 inset;
+  border-radius: 3rem;
+  height: 2rem;
+  transition: background-color 0.25s;
+  width: 4.5rem;
+
+  :hover {
+    outline: 2px solid ${({ theme }) => theme.colors.outline}80;
+  }
+`;
+
 const ToggleForm = styled.form`
-  margin-top: ${({ theme }) => theme.spacing.big};
+  margin-top: ${({ theme }) => theme.spacing.xl};
+
+  :focus-within ${Toggle} {
+    outline: 2px solid ${({ theme }) => theme.colors.outline}80;
+  }
 `;
 
 const ToggleCheckbox = styled.input`
-  display: none;
-`;
-
-const Toggle = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-  box-shadow: ${({ theme }) => theme.colors.shadow} 0 0 0.5em 0 inset;
-  border-radius: 3em;
-  height: 3.2em;
-  margin: 0 auto;
-  position: relative;
-  transition: background-color 0.25s;
-  width: 7em;
+  opacity: 0;
+  position: absolute;
+  left: -999vw;
 `;
 
 const ToggleLabel = styled.label`
@@ -75,27 +83,30 @@ const ToggleLabel = styled.label`
 `;
 
 const ToggleIcon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.colors.themeToggle};
+  color: ${({ theme }) => theme.colors.themeIcon};
   transition: transform 0.25s;
-  padding: 0.3em;
+  padding: ${({ theme }) => theme.spacing.xs};
   opacity: 0.5;
 
   &.dark-mode {
-    transform: translate(2em, 0);
+    transform: translate(2.7rem, 0);
   }
 `;
 
 const ToggleButton = styled(FontAwesomeIcon)`
   transform: translate(0.3em, 0);
-  color: ${({ theme }) => theme.colors.themeToggle};
+  color: ${({ theme }) => theme.colors.themeIcon};
   transition: transform 0.25s;
-  padding: 0.3em;
+  padding: ${({ theme }) => theme.spacing.xs};
 
   &.dark-mode {
-    transform: translate(-1.3em, 0);
+    transform: translate(-1.7rem, 0);
   }
 `;
 
 const LabelText = styled.span`
-  display: none;
+  font: ${({ theme }) => theme.fonts.meta};
+  opacity: 0;
+  position: absolute;
+  left: -999vw;
 `;

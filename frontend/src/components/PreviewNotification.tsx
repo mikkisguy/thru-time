@@ -1,9 +1,15 @@
 import { format, parseISO, add } from "date-fns";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { LATEST_COMMIT_SHA, UPDATED_ON } from "../shared/constants";
+import {
+  LATEST_COMMIT_SHA,
+  TRANSLATIONS,
+  UPDATED_ON,
+} from "../shared/constants";
 
 const PreviewNotification = () => {
-  console.log("UPDATED_ON", UPDATED_ON);
+  const { t, i18n } = useTranslation();
+  const isFinnish = i18n.language === TRANSLATIONS.FI;
 
   const getUpdateDate = (): Date => {
     if (UPDATED_ON) {
@@ -16,16 +22,19 @@ const PreviewNotification = () => {
 
   return (
     <PreviewTopBar>
-      <PreviewSite>Preview site</PreviewSite>
+      <PreviewSite>{t("preview.title")}</PreviewSite>
       <span>
-        Updated
-        {format(getUpdateDate(), " yyyy-MM-dd HH:mm:ss O")}
+        {t("preview.updated")}
+        {format(
+          getUpdateDate(),
+          isFinnish ? " dd.MM.yyyy 'klo' HH:mm:ss" : " PPpp O"
+        )}
       </span>
       <CommitLink
         href={`https://github.com/mikkisguy/thru-time/commit/${LATEST_COMMIT_SHA}`}
         target="_blank"
       >
-        Commit &rarr;
+        Github &rarr;
       </CommitLink>
     </PreviewTopBar>
   );
@@ -40,12 +49,12 @@ const PreviewTopBar = styled.div`
   font: ${({ theme }) => theme.fonts.meta};
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.bodyText};
-  padding: 10px 0;
+  padding: ${({ theme }) => theme.spacing.s} 0;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 30em) {
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: ${({ theme }) => theme.spacing.xs};
   }
 `;
 
@@ -58,11 +67,14 @@ const CommitLink = styled.a`
   color: ${({ theme }) => theme.colors.bodyTextSecondary};
   text-decoration: none;
 
-  :hover {
-    text-decoration: underline;
+  :hover,
+  :focus {
+    outline: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 30em) {
     display: none;
   }
 `;
