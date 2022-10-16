@@ -1,7 +1,17 @@
 import { BaseStyles, Themes } from "./styled";
 
 export const base: BaseStyles = {
-  spacing: ["8px", "12px", "16px"],
+  spacing: {
+    none: "0px",
+    tiny: "4px",
+    small: "8px",
+    medium: "16px",
+    big: "24px",
+    large: "32px",
+  },
+  transition: {
+    linear: "all 0.20s linear",
+  },
   fonts: {
     h1: "2rem/2 'Source Code Pro Bold', monospace",
     body: "1rem/1.8 'DM Sans', sans-serif",
@@ -12,18 +22,24 @@ export const base: BaseStyles = {
 
 export const themes: Themes = {
   light: {
+    themeToggle: "#e2a54c",
     background: "#ebecf0",
     backgroundSecondary: "#fff",
-    heading: "#8e6637",
+    heading: "#6b4405",
     bodyText: "#0b0c10",
     bodyTextSecondary: "#1f2833",
+    highlight: "#116466",
+    shadow: "#b2b2b2",
   },
   dark: {
+    themeToggle: "#858585",
     background: "#1f2833",
     backgroundSecondary: "#12181e",
     heading: "#d9b08c",
     bodyText: "#b2b2b2",
-    bodyTextSecondary: "#7c7c7c",
+    bodyTextSecondary: "#858585",
+    highlight: "#45a29e",
+    shadow: "#0b0c10",
   },
 };
 

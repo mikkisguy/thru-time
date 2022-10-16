@@ -1,6 +1,19 @@
 import "styled-components";
 
-export type FontStyles = {
+type TransitionStyles = {
+  linear: string;
+};
+
+type SpacingStyles = {
+  none: string;
+  tiny: string;
+  small: string;
+  medium: string;
+  big: string;
+  large: string;
+};
+
+type FontStyles = {
   h1: string;
   body: string;
   meta: string;
@@ -8,16 +21,20 @@ export type FontStyles = {
 };
 
 export type ColorStyles = {
+  themeToggle: string;
   background: string;
   backgroundSecondary: string;
   heading: string;
   bodyText: string;
   bodyTextSecondary: string;
+  highlight: string;
+  shadow: string;
 };
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    spacing: string[];
+    spacing: SpacingStyles;
+    transition: TransitionStyles;
     fonts: FontStyles;
     colors: ColorStyles;
   }
@@ -29,7 +46,8 @@ export type Themes = {
 };
 
 export type BaseStyles = {
-  spacing: string[];
+  spacing: SpacingStyles;
+  transition: TransitionStyles;
   fonts: FontStyles;
 };
 
