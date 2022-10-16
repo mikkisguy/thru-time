@@ -6,11 +6,13 @@ type TransitionStyles = {
 
 type SpacingStyles = {
   none: string;
-  tiny: string;
-  small: string;
-  medium: string;
-  big: string;
-  large: string;
+  xxs: string;
+  xs: string;
+  s: string;
+  l: string;
+  xl: string;
+  xxl: string;
+  xxxl: string;
 };
 
 type FontStyles = {

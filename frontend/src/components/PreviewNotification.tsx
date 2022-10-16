@@ -40,12 +40,12 @@ const PreviewTopBar = styled.div`
   font: ${({ theme }) => theme.fonts.meta};
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.bodyText};
-  padding: 10px 0;
+  padding: ${({ theme }) => theme.spacing.s} 0;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 30em) {
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: ${({ theme }) => theme.spacing.xs};
   }
 `;
 
@@ -58,11 +58,14 @@ const CommitLink = styled.a`
   color: ${({ theme }) => theme.colors.bodyTextSecondary};
   text-decoration: none;
 
-  :hover {
-    text-decoration: underline;
+  :hover,
+  :focus {
+    outline: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 30em) {
     display: none;
   }
 `;

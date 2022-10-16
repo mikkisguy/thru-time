@@ -2,12 +2,14 @@ import { BaseStyles, Themes } from "./styled";
 
 export const base: BaseStyles = {
   spacing: {
-    none: "0px",
-    tiny: "4px",
-    small: "8px",
-    medium: "16px",
-    big: "24px",
-    large: "32px",
+    none: "0",
+    xxs: "0.2rem",
+    xs: "0.4rem",
+    s: "0.6rem",
+    l: "0.8rem",
+    xl: "1.6rem",
+    xxl: "2.4rem",
+    xxxl: "3.2rem",
   },
   transition: {
     linear: "all 0.20s linear",
@@ -25,7 +27,7 @@ export const themes: Themes = {
     themeToggle: "#e2a54c",
     background: "#ebecf0",
     backgroundSecondary: "#fff",
-    heading: "#6b4405",
+    heading: "#443616",
     bodyText: "#0b0c10",
     bodyTextSecondary: "#1f2833",
     highlight: "#116466",
