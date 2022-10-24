@@ -33,6 +33,7 @@ const PreviewNotification = () => {
       <CommitLink
         href={`https://github.com/mikkisguy/thru-time/commit/${LATEST_COMMIT_SHA}`}
         target="_blank"
+        tabIndex={-1}
       >
         Github &rarr;
       </CommitLink>

@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <h1>
-        <SiteHeadingLink href="#" aria-label="mikkis.fi">
+        <SiteHeadingLink href="/" aria-label="mikkis.fi">
           mikkis
         </SiteHeadingLink>
       </h1>
@@ -62,6 +62,14 @@ const SiteHeadingLink = styled.a`
   font: ${({ theme }) => theme.fonts.h1};
   color: ${({ theme }) => theme.colors.heading};
   text-decoration: none;
+
+  :focus {
+    outline: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 0.04em;
+    text-decoration-color: #885a37;
+  }
 `;
 
 const NavContainer = styled.nav`
@@ -88,11 +96,11 @@ const NavLink = styled.a`
   color: ${({ theme }) => theme.colors.bodyText};
   text-decoration: none;
   text-transform: uppercase;
-  border: none;
   position: relative;
 
-  :hover {
-    border: none;
+  :hover,
+  :focus {
+    outline: none;
 
     ::after {
       width: 100%;
