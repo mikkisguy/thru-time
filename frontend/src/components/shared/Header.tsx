@@ -40,10 +40,16 @@ export default Header;
 const StyledHeader = styled.header`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
   place-items: center;
   width: 70%;
   margin: ${({ theme }) => theme.spacing.xxxl} auto;
+
+  @media only screen and (max-width: 100em) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ${({ theme }) => theme.spacing.xxl};
+  }
 `;
 
 const SiteHeadingLink = styled.a`
