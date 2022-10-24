@@ -4,5 +4,9 @@ export type TranslationResource = {
     title: string;
     updated: string;
   };
-  greeting: string;
+  nav: {
+    home: string;
+    blog: string;
+    about: string;
+  };
 };

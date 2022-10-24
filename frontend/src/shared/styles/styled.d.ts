@@ -19,6 +19,7 @@ type FontStyles = {
   h1: string;
   body: string;
   bodyBold: string;
+  bodyItalic: string;
   meta: string;
   metaBold: string;
 };
@@ -27,6 +28,7 @@ export type ColorStyles = {
   themeIcon: string;
   background: string;
   backgroundSecondary: string;
+  backgroundTernary: string;
   heading: string;
   bodyText: string;
   bodyTextSecondary: string;

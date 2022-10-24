@@ -43,15 +43,18 @@ const PreviewNotification = () => {
 export default PreviewNotification;
 
 const PreviewTopBar = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
   font: ${({ theme }) => theme.fonts.meta};
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.bodyText};
-  padding: ${({ theme }) => theme.spacing.s} 0;
+  padding: ${({ theme }) => `${theme.spacing.l} ${theme.spacing.xxxl}`};
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  place-items: center;
 
-  @media only screen and (max-width: 30em) {
+  @media only screen and (max-width: 45em) {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: ${({ theme }) => theme.spacing.xs};
@@ -74,7 +77,7 @@ const CommitLink = styled.a`
     text-decoration-style: wavy;
   }
 
-  @media only screen and (max-width: 30em) {
+  @media only screen and (max-width: 45em) {
     display: none;
   }
 `;
