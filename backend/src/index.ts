@@ -1,4 +1,4 @@
-import express, { Response, Application, NextFunction } from "express";
+import express, { Application } from "express";
 import helmet from "helmet";
 import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
 import { logger, requestErrorHandler } from "./shared/utils";
@@ -7,6 +7,7 @@ import SlowDown from "express-slow-down";
 import https from "https";
 import * as fs from "fs";
 import main from "./routes/main";
+import rateLimit from "express-rate-limit";
 
 const app: Application = express();
 
@@ -20,13 +21,14 @@ const httpsServer = https.createServer(
 
 app.use(helmet());
 
-const speedLimiter = SlowDown({
+const rateLimiter = rateLimit({
   windowMs: TIME.MINUTE * 15,
-  delayAfter: 100,
-  delayMs: 500,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 
-app.use(speedLimiter);
+app.use(rateLimiter);
 
 app.use(
   cors({
