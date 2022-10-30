@@ -1,0 +1,88 @@
+openapi: 3.1.0
+info:
+  title: Thru Time API
+  version: '1.0'
+  license:
+    url: 'https://github.com/mikkisguy/thru-time/blob/main/LICENSE'
+    name: GPL-3.0
+  description: API for Mikkis.fi website
+  contact:
+    name: Mikko (MikkisGuy)
+  summary: API for Mikkis.fi website
+servers:
+  - url: 'https://api.bymikkis.net'
+    description: Production
+  - description: Preview
+    url: 'https://api-preview.bymikkis.net'
+paths:
+  /blog-posts:
+    get:
+      summary: List blog posts
+      responses: {}
+      operationId: get-blog-posts
+      description: List blog posts
+      tags:
+        - Blog posts
+      parameters:
+        - schema:
+            type: number
+            maximum: 10
+            minimum: 2
+            format: float
+            example: 6
+          in: query
+          name: limit
+          description: Limit between 2-10 how many posts to return
+        - schema:
+            type: number
+            format: float
+            default: 1
+            example: 5
+            minimum: 1
+          in: query
+          name: page
+          description: Number of the page to return
+    post:
+      summary: Create new blog post
+      responses: {}
+      operationId: post-blog-posts
+      description: Create new blog post
+      tags:
+        - Blog posts
+  '/blog-posts/{blogPostGuid}':
+    parameters:
+      - schema:
+          type: string
+          example: ca692868-8ac3-45b2-86db-227ab715c9e9
+          format: uuid
+        name: blogPostGuid
+        in: path
+        required: true
+        description: Blog post GUID
+    get:
+      summary: Get one blog post by id
+      tags:
+        - Blog post
+      responses: {}
+      operationId: get-blog-posts-blogPostId
+      description: Get one blog post by id
+    patch:
+      summary: Update blog post by id
+      tags:
+        - Blog post
+      responses: {}
+      operationId: patch-blog-posts-blogPostId
+      description: Update blog post by id
+    delete:
+      summary: Delete blog post by id
+      tags:
+        - Blog post
+      responses: {}
+      operationId: delete-blog-posts-blogPostId
+      description: Delete blog post by id
+components:
+  schemas: {}
+  securitySchemes: {}
+tags:
+  - name: Blog post
+  - name: Blog posts
