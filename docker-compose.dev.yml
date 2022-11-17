@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  thru-time-postgres-dev:
+    image: postgres:14
+    container_name: thru-time-postgres-dev
+    environment:
+      - POSTGRES_USER=dev_thrutime_user
+      - POSTGRES_PASSWORD=dev_thrutime_password
+      - POSTGRES_DB=dev_thrutime_db
+    volumes:
+      - ./database/dev-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    restart: always

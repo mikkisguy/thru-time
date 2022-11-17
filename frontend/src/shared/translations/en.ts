@@ -6,7 +6,11 @@ const english: TranslationResource = {
     title: "Preview site",
     updated: "Updated",
   },
-  greeting: "Hello world!",
+  nav: {
+    home: "Home",
+    blog: "Blog",
+    about: "About",
+  },
 };
 
 export default english;
