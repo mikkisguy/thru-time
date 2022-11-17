@@ -18,7 +18,119 @@ paths:
   /blog-posts:
     get:
       summary: List blog posts
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    data:
+                      - slug: blog-post-slug-and-title
+                        title: Blog post slug and title
+                        abstract: 'This is abstract for this blog post, lorem ipsum dolor sit amet.'
+                        publishedOn: '2022-11-01T20:00:00Z'
+                        edited: false
+                        editedOn: '2022-11-01T20:00:00Z'
+                    pagination:
+                      page: 1
+                      totalPages: 7
+                      hasMore: true
+                properties:
+                  data:
+                    type: array
+                    uniqueItems: true
+                    maxItems: 10
+                    items:
+                      type: object
+                      additionalProperties: false
+                      properties:
+                        slug:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          readOnly: true
+                        categorySlug:
+                          type: string
+                          readOnly: true
+                        tagSlugs:
+                          type: array
+                          uniqueItems: true
+                          items:
+                            type: string
+                            readOnly: true
+                          readOnly: true
+                        abstract:
+                          type: string
+                          readOnly: true
+                        publishedOn:
+                          type: string
+                          readOnly: true
+                        edited:
+                          type: boolean
+                          default: false
+                          readOnly: true
+                        editedOn:
+                          type: string
+                          readOnly: true
+                      required:
+                        - slug
+                        - title
+                        - categorySlug
+                        - tagSlugs
+                        - abstract
+                        - publishedOn
+                        - edited
+                        - editedOn
+                      readOnly: true
+                    readOnly: true
+                  meta:
+                    type: object
+                    required:
+                      - pagination
+                    properties:
+                      pagination:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - page
+                          - totalPages
+                        properties:
+                          page:
+                            type: integer
+                            example: 1
+                            readOnly: true
+                          totalPages:
+                            type: integer
+                            example: 7
+                            readOnly: true
+                        readOnly: true
+                    readOnly: true
+                required:
+                  - data
+                  - meta
+                readOnly: true
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - slug: blog-post-slug-and-title
+                        title: Blog post slug and title
+                        categorySlug: life
+                        tagSlugs:
+                          - example
+                          - lorem
+                        abstract: 'This is abstract for this blog post, lorem ipsum dolor sit amet.'
+                        publishedOn: '2022-11-01T20:00:00Z'
+                        edited: false
+                        editedOn: '2022-11-01T20:00:00Z'
+                    meta:
+                      pagination:
+                        page: 1
+                        totalPages: 7
       operationId: get-blog-posts
       description: List blog posts
       tags:
@@ -27,12 +139,11 @@ paths:
         - schema:
             type: number
             maximum: 10
-            minimum: 2
             format: float
             example: 6
           in: query
           name: limit
-          description: Limit between 2-10 how many posts to return
+          description: Limit how many posts to return (up to 10)
         - schema:
             type: number
             format: float
@@ -42,6 +153,18 @@ paths:
           in: query
           name: page
           description: Number of the page to return
+        - schema:
+            type: string
+            example: fi
+            default: fi
+            minLength: 2
+            maxLength: 2
+            enum:
+              - fi
+              - en
+          in: query
+          name: lang
+          description: Language filter for blog posts
     post:
       summary: Create new blog post
       responses: {}
@@ -49,37 +172,68 @@ paths:
       description: Create new blog post
       tags:
         - Blog posts
-  '/blog-posts/{blogPostGuid}':
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  title: Blog post slug and title
+                  categorySlug: life
+                  tagSlugs:
+                    - example
+                    - lorem
+                  abstract: 'This is abstract for this blog post, lorem ipsum dolor sit amet.'
+                  content: 'This is the main content of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec felis quis quam vulputate gravida eu sed sem. Nam magna urna, molestie nec purus nec, egestas pellentesque elit.'
+              properties:
+                title:
+                  type: string
+                categorySlug:
+                  type: string
+                tagSlugs:
+                  type: array
+                  items:
+                    type: string
+                abstract:
+                  type: string
+                content:
+                  type: string
+              required:
+                - title
+                - categorySlug
+                - tagSlugs
+                - abstract
+                - content
+              readOnly: true
+  '/blog-posts/{blogPostSlug}':
     parameters:
       - schema:
           type: string
-          example: ca692868-8ac3-45b2-86db-227ab715c9e9
-          format: uuid
-        name: blogPostGuid
+        name: blogPostSlug
         in: path
         required: true
-        description: Blog post GUID
     get:
-      summary: Get one blog post by id
+      summary: Get one blog post by slug
       tags:
         - Blog post
       responses: {}
-      operationId: get-blog-posts-blogPostId
-      description: Get one blog post by id
+      operationId: get-blog-posts-blogPostSlug
+      description: Get one blog post by slug
     patch:
-      summary: Update blog post by id
+      summary: Update blog post by slug
       tags:
         - Blog post
       responses: {}
-      operationId: patch-blog-posts-blogPostId
-      description: Update blog post by id
+      operationId: patch-blog-posts-blogPostSlug
+      description: Update blog post by slug
     delete:
-      summary: Delete blog post by id
+      summary: Delete blog post by slug
       tags:
         - Blog post
       responses: {}
-      operationId: delete-blog-posts-blogPostId
-      description: Delete blog post by id
+      operationId: delete-blog-posts-blogPostSlug
+      description: Delete blog post by slug
 components:
   schemas: {}
   securitySchemes: {}
