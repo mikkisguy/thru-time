@@ -2,9 +2,9 @@ import { faCircle, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useContext } from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../shared/styles/styled";
-import { themes } from "../shared/styles/themes";
-import { SiteThemeContext } from "./ThemeContextProvider";
+import { ThemeContext } from "../../shared/styles/styled";
+import { themes } from "../../shared/styles/themes";
+import { SiteThemeContext } from "../ThemeContextProvider";
 
 const DarkModeToggle = () => {
   const { currentTheme, setCurrentTheme } = useContext(
@@ -65,8 +65,6 @@ const Toggle = styled.div`
 `;
 
 const ToggleForm = styled.form`
-  margin-top: ${({ theme }) => theme.spacing.xl};
-
   :focus-within ${Toggle} {
     outline: 2px solid ${({ theme }) => theme.colors.outline}80;
   }

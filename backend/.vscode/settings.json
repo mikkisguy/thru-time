@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "Thru Time Dev",
+      "database": "dev_thrutime_db",
+      "username": "dev_thrutime_user",
+      "password": "dev_thrutime_password"
+    }
+  ]
+}

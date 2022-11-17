@@ -6,8 +6,6 @@ on:
       - main
     paths:
       - 'frontend/**'
-      - '!frontend/.storybook/**'
-      - '!frontend/src/components/__stories__/**'
 
 env:
   REGISTRY: ghcr.io

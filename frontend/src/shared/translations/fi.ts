@@ -6,7 +6,11 @@ const finnish: TranslationResource = {
     title: "Esikatselusivu",
     updated: "Päivitetty",
   },
-  greeting: "Hei maailma!",
+  nav: {
+    home: "Koti",
+    blog: "Blogi",
+    about: "Tietoa",
+  },
 };
 
 export default finnish;
