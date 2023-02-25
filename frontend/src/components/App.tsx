@@ -3,6 +3,7 @@ import { IS_PREVIEW_SITE, LATEST_COMMIT_SHA } from "../shared/constants";
 import GlobalStyle from "../shared/styles/globalStyle";
 import PreviewNotification from "./PreviewNotification";
 import Header from "./shared/Header";
+import TemporaryInformation from "./TemporaryInformation";
 import ThemeContextProvider from "./ThemeContextProvider";
 
 const App = () => {
@@ -11,8 +12,16 @@ const App = () => {
   return (
     <ThemeContextProvider>
       <GlobalStyle />
-      {IS_PREVIEW_SITE && LATEST_COMMIT_SHA && <PreviewNotification />}
-      <Header />
+      {IS_PREVIEW_SITE ? (
+        LATEST_COMMIT_SHA && (
+          <>
+            <PreviewNotification />
+            <Header />
+          </>
+        )
+      ) : (
+        <TemporaryInformation />
+      )}
     </ThemeContextProvider>
   );
 };
