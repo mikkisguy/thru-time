@@ -10,7 +10,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}-frontend
-  VITE_PREVIEW_SITE: false
   VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
 jobs:
