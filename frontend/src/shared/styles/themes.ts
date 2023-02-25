@@ -36,6 +36,8 @@ export const themes: Themes = {
     highlight: "#116466",
     outline: "#858585",
     shadow: "#b2b2b2",
+    linkText: "#116466",
+    linkUnderline: "#707070",
   },
   dark: {
     themeIcon: "#858585",
@@ -45,9 +47,11 @@ export const themes: Themes = {
     heading: "#d9b08c",
     bodyText: "#b2b2b2",
     bodyTextSecondary: "#858585",
-    highlight: "#45a29e",
+    highlight: "#4db3ac",
     outline: "#858585",
     shadow: "#0b0c10",
+    linkText: "#4db3ac",
+    linkUnderline: "#3f928e",
   },
 };
 

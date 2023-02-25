@@ -35,6 +35,8 @@ export type ColorStyles = {
   highlight: string;
   outline: string;
   shadow: string;
+  linkText: string;
+  linkUnderline: string;
 };
 
 declare module "styled-components" {
