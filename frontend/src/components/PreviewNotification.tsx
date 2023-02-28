@@ -14,7 +14,7 @@ const PreviewNotification = () => {
   const getUpdateDate = (): Date => {
     if (UPDATED_ON) {
       // Adding three hours because of Github Actions time difference
-      return add(parseISO(UPDATED_ON), { hours: 3 });
+      return add(parseISO(UPDATED_ON), { hours: 2 });
     }
 
     return new Date();
