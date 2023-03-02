@@ -4,7 +4,7 @@ const english: TranslationResource = {
   changeLanguage: "Vaihda suomen kielelle",
   temporary: {
     title: "New Mikkis.fi coming!",
-    main: "There is no date set for the release of the new website, but you can follow its development from the <1>preview page</1>.",
+    main: "There is no date set for the release of the new website, but you can follow its development from the <1>preview site</1>.",
     socials: "You can follow Mikkis on <1>Twitch</1> or <4>Twitter</4> (mainly in finnish).",
   },
   preview: {
