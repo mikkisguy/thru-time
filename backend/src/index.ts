@@ -1,12 +1,15 @@
 import express, { Application } from "express";
 import helmet from "helmet";
-import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
-import { logger, requestErrorHandler } from "./shared/utils";
 import cors from "cors";
 import https from "https";
 import * as fs from "fs";
-import main from "./routes/main";
 import rateLimit from "express-rate-limit";
+
+import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
+import { logger, requestErrorHandler } from "./shared/utils";
+
+import routes from "./routes";
+import bodyParser from "body-parser";
 
 const app: Application = express();
 
@@ -18,6 +21,7 @@ const httpsServer = https.createServer(
   app
 );
 
+// Middleware
 app.use(helmet());
 
 app.use(
@@ -33,15 +37,20 @@ app.use(
   cors({
     origin:
       ENV !== undefined
-        ? ["https://preview.mikkis.fi", "https://new.mikkis.fi"]
+        ? ["https://preview.mikkis.fi", "https://mikkis.fi"]
         : ["http://localhost:5173"],
   })
 );
 
-app.get("/", main);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Routes
+app.get("/", routes.main);
 
 app.use(requestErrorHandler);
 
+// GO!
 httpsServer.listen(EXPRESS_PORT, (): void => {
   logger(
     `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${LOG_STYLING.RESET}`
