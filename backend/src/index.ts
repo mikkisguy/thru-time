@@ -6,7 +6,7 @@ import * as fs from "fs";
 import rateLimit from "express-rate-limit";
 
 import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
-import { logger, requestErrorHandler } from "./shared/utils";
+import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
 
 import routes from "./routes";
 import bodyParser from "body-parser";
@@ -55,4 +55,6 @@ httpsServer.listen(EXPRESS_PORT, (): void => {
   logger(
     `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${LOG_STYLING.RESET}`
   );
+
+  initDatabase();
 });

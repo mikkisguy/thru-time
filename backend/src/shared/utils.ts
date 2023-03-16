@@ -1,9 +1,15 @@
 import { format } from "date-fns";
-import { IS_PRODUCTION, LOG_STYLING } from "./constants";
+import {
+  DATE_FORMAT,
+  IS_PRODUCTION,
+  LOG_STYLING,
+  POSTGRES_CONNECTION_STRING,
+} from "./constants";
 import { Request, Response, NextFunction } from "express";
+import { Sequelize } from "sequelize";
 
 export const logger = (message: string, error = false) => {
-  const date = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+  const date = format(new Date(), DATE_FORMAT);
   const type = error ? `${LOG_STYLING.RED}ERROR` : `${LOG_STYLING.CYAN}INFO`;
 
   return console.log(`${date} | ${type}${LOG_STYLING.RESET} | ${message}`);
@@ -28,4 +34,15 @@ export const requestErrorHandler = (
   logger(errorLogMessage, true);
 
   response.sendStatus(status);
+};
+
+export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
+  logging: (...msg) => logger(`SEQUELIZE: ${msg.toString()}`),
+});
+
+export const initDatabase = async () => {
+  // Relationships
+  // TODO
+
+  await sequelize.sync();
 };

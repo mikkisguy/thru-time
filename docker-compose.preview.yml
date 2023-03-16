@@ -33,6 +33,7 @@ services:
       - POSTGRES_USER=$PREVIEW_POSTGRES_USER
       - POSTGRES_PASSWORD=$PREVIEW_POSTGRES_PASSWORD
       - POSTGRES_DB=$PREVIEW_POSTGRES_DB
+      - POSTGRES_PORT=$POSTGRES_PORT
       - SSL_CERT_PATH=$SSL_CERT_PATH
       - SSL_KEY_PATH=$SSL_KEY_PATH
     volumes:
@@ -60,3 +61,4 @@ services:
     ports:
       - $PREVIEW_REACT_PORT:443
     restart: unless-stopped
+

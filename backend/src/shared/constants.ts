@@ -11,11 +11,11 @@ export const TIME = {
   SECOND: 1000,
 };
 
-export const DB = {
-  NAME: process.env.POSTGRES_DB,
-  USER: process.env.POSTGRES_USER,
-  PASSWORD: process.env.POSTGRES_PASSWORD,
-};
+export const POSTGRES_CONNECTION_STRING =
+  "postgres://" +
+  `${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}` +
+  "@localhost:" +
+  `${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`;
 
 export const SSL: {
   CERT_PATH: PathOrFileDescriptor;
@@ -36,3 +36,5 @@ export const LOG_STYLING = {
   RED: "\x1b[31m",
   CYAN: "\x1b[36m",
 };
+
+export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
