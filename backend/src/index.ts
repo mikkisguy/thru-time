@@ -31,6 +31,17 @@ const httpsServer = https.createServer(
 );
 
 // Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+
+morganBody(app, {
+  logAllReqHeader: IS_DEV,
+  dateTimeFormat: "iso",
+  prettify: IS_DEV,
+  includeNewLine: IS_DEV,
+  theme: "lightened",
+});
+
 app.use(helmet());
 
 app.use(
@@ -49,18 +60,6 @@ app.use(
       : ["http://localhost:5173"],
   })
 );
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.use(morgan("combined"));
-
-morganBody(app, {
-  logAllReqHeader: IS_DEV,
-  dateTimeFormat: "iso",
-  prettify: IS_DEV,
-  includeNewLine: IS_DEV,
-});
 
 // Routes
 app.get("/", routes.main);
