@@ -4,6 +4,8 @@ import cors from "cors";
 import https from "https";
 import * as fs from "fs";
 import rateLimit from "express-rate-limit";
+import bodyParser from "body-parser";
+import morgan from "morgan";
 import morganBody from "morgan-body";
 
 import {
@@ -15,10 +17,7 @@ import {
   IS_DEV,
 } from "./shared/constants";
 import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
-
 import routes from "./routes";
-import bodyParser from "body-parser";
-import morgan from "morgan";
 
 const app: Application = express();
 
@@ -33,6 +32,8 @@ const httpsServer = https.createServer(
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(morgan("dev"));
 
 morganBody(app, {
   logAllReqHeader: IS_DEV,
