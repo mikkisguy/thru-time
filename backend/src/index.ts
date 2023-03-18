@@ -18,6 +18,7 @@ import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
 
 import routes from "./routes";
 import bodyParser from "body-parser";
+import morgan from "morgan";
 
 const app: Application = express();
 
@@ -51,6 +52,8 @@ app.use(
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(morgan("combined"));
 
 morganBody(app, {
   logAllReqHeader: IS_DEV,
