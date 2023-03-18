@@ -3,6 +3,7 @@ import { PathOrFileDescriptor } from "fs";
 export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
 export const IS_PREVIEW = ENV === "preview";
+export const IS_DEV = ENV === "dev";
 
 export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 

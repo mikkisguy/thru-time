@@ -4,8 +4,18 @@ import cors from "cors";
 import https from "https";
 import * as fs from "fs";
 import rateLimit from "express-rate-limit";
+import morgan from "morgan";
+import morganBody from "morgan-body";
 
-import { LOG_STYLING, EXPRESS_PORT, SSL, TIME, ENV } from "./shared/constants";
+import {
+  LOG_STYLING,
+  EXPRESS_PORT,
+  SSL,
+  TIME,
+  ENV,
+  IS_PREVIEW,
+  IS_DEV,
+} from "./shared/constants";
 import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
 
 import routes from "./routes";
@@ -45,6 +55,13 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
+morganBody(app, {
+  logAllReqHeader: IS_DEV,
+  dateTimeFormat: "iso",
+  prettify: IS_DEV,
+  includeNewLine: IS_DEV,
+});
+
 // Routes
 app.get("/", routes.main);
 
@@ -53,7 +70,11 @@ app.use(requestErrorHandler);
 // GO!
 httpsServer.listen(EXPRESS_PORT, (): void => {
   logger(
-    `${LOG_STYLING.UNDERSCORE}*** THRU TIME BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${LOG_STYLING.RESET}`
+    `${
+      LOG_STYLING.UNDERSCORE
+    }*** THRU TIME ${ENV?.toUpperCase()} BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${
+      LOG_STYLING.RESET
+    }`
   );
 
   try {
