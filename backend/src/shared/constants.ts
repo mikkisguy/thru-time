@@ -14,8 +14,8 @@ export const TIME = {
 export const POSTGRES_CONNECTION_STRING =
   "postgres://" +
   `${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}` +
-  "@localhost:" +
-  `${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`;
+  `@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}` +
+  `/${process.env.POSTGRES_DB}`;
 
 export const SSL: {
   CERT_PATH: PathOrFileDescriptor;

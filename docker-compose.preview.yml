@@ -30,6 +30,7 @@ services:
     environment:
       - NODE_ENV=preview
       - EXPRESS_PORT=$PREVIEW_EXPRESS_PORT
+      - POSTGRES_HOST=thru-time-postgres-preview
       - POSTGRES_USER=$PREVIEW_POSTGRES_USER
       - POSTGRES_PASSWORD=$PREVIEW_POSTGRES_PASSWORD
       - POSTGRES_DB=$PREVIEW_POSTGRES_DB
