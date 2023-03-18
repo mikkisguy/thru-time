@@ -4,7 +4,6 @@ import cors from "cors";
 import https from "https";
 import * as fs from "fs";
 import rateLimit from "express-rate-limit";
-import morgan from "morgan";
 import morganBody from "morgan-body";
 
 import {
@@ -13,7 +12,6 @@ import {
   SSL,
   TIME,
   ENV,
-  IS_PREVIEW,
   IS_DEV,
 } from "./shared/constants";
 import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
@@ -45,10 +43,9 @@ app.use(
 
 app.use(
   cors({
-    origin:
-      ENV !== undefined
-        ? ["https://preview.mikkis.fi", "https://mikkis.fi"]
-        : ["http://localhost:5173"],
+    origin: !IS_DEV
+      ? ["https://preview.mikkis.fi", "https://mikkis.fi"]
+      : ["http://localhost:5173"],
   })
 );
 
