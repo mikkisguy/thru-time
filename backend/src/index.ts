@@ -64,6 +64,7 @@ app.use(
 
 // Routes
 app.get("/", routes.main);
+app.get("/user", routes.user);
 
 app.use(requestErrorHandler);
 
