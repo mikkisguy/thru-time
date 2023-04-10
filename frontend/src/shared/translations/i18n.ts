@@ -14,6 +14,7 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    returnNull: false,
     resources: {
       "fi-FI": {
         translation: finnish,
