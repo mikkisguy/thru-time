@@ -40,10 +40,3 @@ export const requestErrorHandler = (
 export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
   logging: (...msg) => logger(`SEQUELIZE: ${msg}`),
 });
-
-export const initDatabase = async () => {
-  // Relationships
-  // TODO
-
-  await sequelize.sync();
-};

@@ -16,8 +16,9 @@ import {
   ENV,
   IS_DEV,
 } from "./shared/constants";
-import { initDatabase, logger, requestErrorHandler } from "./shared/utils";
+import { logger, requestErrorHandler } from "./shared/utils";
 import routes from "./routes";
+import { initDatabase } from "./shared/sequelize";
 
 const app: Application = express();
 
