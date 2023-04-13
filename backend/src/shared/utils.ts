@@ -16,8 +16,12 @@ export const logger = (message: string, error = false) => {
   return error ? console.error(logLine) : console.info(logLine);
 };
 
+interface ResponseError extends Error {
+  status?: number;
+}
+
 export const requestErrorHandler = (
-  error: any,
+  error: ResponseError,
   request: Request,
   response: Response,
   next: NextFunction
