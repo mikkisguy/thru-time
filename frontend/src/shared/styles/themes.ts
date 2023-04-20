@@ -22,6 +22,10 @@ export const base: BaseStyles = {
     meta: "0.8rem/1.5 'DM Sans', sans-serif",
     metaBold: "0.8rem/1.5 'DM Sans Bold', sans-serif",
   },
+  bp: {
+    narrow: "85em",
+    mobile: "55em",
+  },
 };
 
 export const themes: Themes = {

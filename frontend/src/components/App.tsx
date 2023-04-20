@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import {
   IS_DEVELOPMENT,
   IS_PREVIEW_SITE,
@@ -13,8 +12,6 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 const App = () => {
-  const { t } = useTranslation();
-
   return (
     <ThemeContextProvider>
       <GlobalStyle />
@@ -46,4 +43,12 @@ const SiteOuterContainer = styled.div`
 const SiteContainer = styled.div`
   place-self: center;
   width: 70%;
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.mobile}) {
+    width: 100%;
+  }
 `;

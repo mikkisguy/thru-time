@@ -25,4 +25,10 @@ const HomeImage = styled.div`
   &.dark-mode {
     filter: brightness(0.7);
   }
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.mobile}) {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
 `;
