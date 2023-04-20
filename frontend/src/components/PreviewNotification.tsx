@@ -1,13 +1,19 @@
 import { format, parseISO, add } from "date-fns";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import {
+  IS_DEVELOPMENT,
   LATEST_COMMIT_SHA,
   TRANSLATIONS,
   UPDATED_ON,
 } from "../shared/constants";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PreviewNotification = () => {
+  const [isPreviewBarVisible, setPreviewBarVisible] = useState(false);
+
   const { t, i18n } = useTranslation();
   const isFinnish = i18n.language === TRANSLATIONS.FI;
 
@@ -21,7 +27,7 @@ const PreviewNotification = () => {
   };
 
   return (
-    <PreviewTopBar>
+    <PreviewTopBar hide={isPreviewBarVisible}>
       <PreviewSite>{t("preview.title")}</PreviewSite>
       <span>
         {t("preview.updated")}
@@ -39,18 +45,27 @@ const PreviewNotification = () => {
       >
         Github &rarr;
       </CommitLink>
+
+      {IS_DEVELOPMENT && (
+        <HideIcon
+          icon={faXmark}
+          size="2x"
+          onClick={() => setPreviewBarVisible(true)}
+          title="Hide preview bar"
+        />
+      )}
     </PreviewTopBar>
   );
 };
 
 export default PreviewNotification;
 
-const PreviewTopBar = styled.div`
+const PreviewTopBar = styled.div<{ hide: boolean }>`
   font: ${({ theme }) => theme.fonts.meta};
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.bodyText};
   padding: ${({ theme }) => `${theme.spacing.l} ${theme.spacing.xxxl}`};
-  display: grid;
+  display: ${({ hide }) => (hide ? "none" : "grid")};
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   width: 100%;
@@ -83,4 +98,10 @@ const CommitLink = styled.a`
   @media only screen and (max-width: 45em) {
     display: none;
   }
+`;
+
+const HideIcon = styled(FontAwesomeIcon)`
+  position: fixed;
+  right: ${({ theme }) => theme.spacing.l};
+  cursor: pointer;
 `;
