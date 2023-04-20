@@ -44,7 +44,7 @@ const StyledHeader = styled.header`
   width: 70%;
   margin: ${({ theme }) => theme.spacing.xxxl} auto;
 
-  @media only screen and (max-width: 100em) {
+  @media only screen and (max-width: 85em) {
     display: flex;
     flex-direction: column;
     align-items: center;
