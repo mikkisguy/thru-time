@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
-import DotFiImage from "../../assets/images/dot-fi.png";
+import DotFiImage from "../../assets/images/dot-fi.webp";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -40,8 +40,8 @@ export default Header;
 const StyledHeader = styled.header`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  width: 70%;
+  align-items: center;
+  width: 100%;
   margin: ${({ theme }) => theme.spacing.xxxl} auto;
 
   @media only screen and (max-width: 85em) {
@@ -75,6 +75,7 @@ const SiteHeadingLink = styled.a`
 const NavContainer = styled.nav`
   font: ${({ theme }) => theme.fonts.body};
   color: ${({ theme }) => theme.colors.bodyText};
+  justify-self: center;
 
   & ul {
     list-style-type: none;
@@ -123,4 +124,5 @@ const NavLink = styled.a`
 const SiteOptions = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.xs};
+  justify-self: end;
 `;
