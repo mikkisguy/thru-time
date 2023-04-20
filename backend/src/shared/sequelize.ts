@@ -5,5 +5,9 @@ import { sequelize } from "./utils";
 export const User = UserModel;
 
 export const initDatabase = async () => {
+  // Relationships
+  // TODO
+
+  // Sync
   await sequelize.sync({ force: IS_DEV || IS_PREVIEW });
 };
