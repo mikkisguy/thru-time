@@ -26,7 +26,7 @@ const HomeImage = styled.div`
     filter: brightness(0.7);
   }
 
-  @media only screen and (max-width: ${({ theme }) => theme.bp.mobile}) {
+  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
     border-left: none;
     border-right: none;
     border-radius: 0;

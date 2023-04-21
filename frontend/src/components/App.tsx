@@ -44,11 +44,11 @@ const SiteContainer = styled.div`
   place-self: center;
   width: 70%;
 
-  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
-    width: 80%;
+  @media only screen and (min-width: ${({ theme }) => theme.bp.wide}) {
+    width: 60%;
   }
 
-  @media only screen and (max-width: ${({ theme }) => theme.bp.mobile}) {
+  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
     width: 100%;
   }
 `;

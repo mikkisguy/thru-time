@@ -40,8 +40,9 @@ export type ColorStyles = {
 };
 
 export type Breakpoints = {
+  wide: string;
   narrow: string;
-  mobile: string;
+  small: string;
 };
 
 declare module "styled-components" {

@@ -16,15 +16,16 @@ export const base: BaseStyles = {
   },
   fonts: {
     h1: "4rem/1 'Source Code Pro Bold', monospace",
-    body: "1rem/1.8 'DM Sans', sans-serif",
-    bodyBold: "1rem/1.8 'DM Sans Bold', sans-serif",
-    bodyItalic: "1rem/1.8 'DM Sans Italic', sans-serif",
+    body: "1.1rem/1.8 'DM Sans', sans-serif",
+    bodyBold: "1.1rem/1.8 'DM Sans Bold', sans-serif",
+    bodyItalic: "1.1rem/1.8 'DM Sans Italic', sans-serif",
     meta: "0.8rem/1.5 'DM Sans', sans-serif",
     metaBold: "0.8rem/1.5 'DM Sans Bold', sans-serif",
   },
   bp: {
-    narrow: "85em",
-    mobile: "55em",
+    wide: "1920px",
+    narrow: "1500px",
+    small: "900px",
   },
 };
 
