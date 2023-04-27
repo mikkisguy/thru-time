@@ -42,10 +42,10 @@ const SiteOuterContainer = styled.div`
 
 const SiteContainer = styled.div`
   place-self: center;
-  width: 70%;
+  width: 60%;
 
-  @media only screen and (min-width: ${({ theme }) => theme.bp.wide}) {
-    width: 60%;
+  @media only screen and (max-width: ${({ theme }) => theme.bp.wide}) {
+    width: 65%;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
