@@ -5,20 +5,11 @@ import https from "https";
 import * as fs from "fs";
 import rateLimit from "express-rate-limit";
 import bodyParser from "body-parser";
-import morgan from "morgan";
-import morganBody from "morgan-body";
 
-import {
-  LOG_STYLING,
-  EXPRESS_PORT,
-  SSL,
-  TIME,
-  ENV,
-  IS_DEV,
-} from "./shared/constants";
-import { logger, requestErrorHandler } from "./shared/utils";
+import { EXPRESS_PORT, SSL, TIME, ENV, IS_DEV } from "./shared/constants";
 import { initDatabase } from "./shared/sequelize";
 import routeController from "./routes";
+import { handleLogging, requestErrorHandler } from "./shared/utils";
 
 const app: Application = express();
 
@@ -30,26 +21,20 @@ const httpsServer = https.createServer(
   app
 );
 
+const { loggerMiddleware, logger } = handleLogging();
+
 // Middleware
+app.use(loggerMiddleware);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.use(morgan("dev"));
-
-morganBody(app, {
-  logAllReqHeader: IS_DEV,
-  dateTimeFormat: "iso",
-  prettify: IS_DEV,
-  includeNewLine: IS_DEV,
-  theme: "lightened",
-});
 
 app.use(helmet());
 
 app.use(
   rateLimit({
     windowMs: TIME.MINUTE * 15,
-    max: 200,
+    max: 100,
     standardHeaders: true,
     legacyHeaders: false,
   })
@@ -71,17 +56,13 @@ app.use(requestErrorHandler);
 
 // GO!
 httpsServer.listen(EXPRESS_PORT, (): void => {
-  logger(
-    `${
-      LOG_STYLING.UNDERSCORE
-    }*** THRU TIME ${ENV?.toUpperCase()} BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***${
-      LOG_STYLING.RESET
-    }`
+  logger.info(
+    `*** THRU TIME ${ENV?.toUpperCase()} BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***`
   );
 
   try {
     initDatabase();
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 });
