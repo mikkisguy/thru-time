@@ -2,7 +2,7 @@ import { UserModel } from "../models/user";
 import { IS_DEV, IS_PREVIEW } from "./constants";
 import { sequelize } from "./utils";
 
-export const User = UserModel;
+export { UserModel };
 
 export const initDatabase = async () => {
   // Relationships

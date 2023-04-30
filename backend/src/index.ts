@@ -17,8 +17,8 @@ import {
   IS_DEV,
 } from "./shared/constants";
 import { logger, requestErrorHandler } from "./shared/utils";
-import routes from "./routes";
 import { initDatabase } from "./shared/sequelize";
+import routeController from "./routes";
 
 const app: Application = express();
 
@@ -63,10 +63,10 @@ app.use(
   })
 );
 
-// Routes
-app.get("/", routes.main);
-app.get("/user", routes.user);
+// Route controller
+routeController(app);
 
+// Error handler
 app.use(requestErrorHandler);
 
 // GO!

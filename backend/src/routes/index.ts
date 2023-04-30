@@ -1,7 +1,15 @@
+import { Application } from "express";
+import { BASE_PATH, PATH } from "../shared/constants";
 import main from "./main";
-import user from "./user";
+import users from "./users";
 
-export default {
-  main,
-  user,
+const routeController = (app: Application) => {
+  // Main
+  app.get(BASE_PATH, main);
+
+  // Users
+  app.get(PATH.USERS, users);
+  app.post(PATH.USERS, users);
 };
+
+export default routeController;

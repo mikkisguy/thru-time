@@ -39,3 +39,10 @@ export const LOG_STYLING = {
 };
 
 export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+
+export const BASE_PATH = "/";
+
+export const PATH = {
+  MAIN: BASE_PATH,
+  USERS: BASE_PATH + "users",
+};
