@@ -46,3 +46,5 @@ export const PATH = {
   MAIN: BASE_PATH,
   USERS: BASE_PATH + "users",
 };
+
+export const SALT_ROUNDS = 12;

@@ -46,7 +46,7 @@ export const handleRequestError = (
   next: NextFunction
 ): void => {
   const errorLogMessage = `Request ${request.method} ${request.url} -> ${
-    IS_PRODUCTION ? error.message : error.stack
+    error.name + "\n" + error.stack
   }`;
 
   let statusCode = 500;
@@ -65,25 +65,35 @@ export const handleRequestError = (
 
   logger.error(errorLogMessage);
 
-  response.status(statusCode);
-  response.send({ errorMessage: error.message });
+  const getErrorResponse = () => {
+    if (IS_DEV) {
+      if (error === Object(error)) {
+        return error;
+      }
+
+      return { message: error };
+    }
+
+    return { message: error.name ? error.name : "Error" };
+  };
+
+  response.status(statusCode).send(getErrorResponse());
 };
 
 export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
   logging: (...msg) => logger.info(`SEQUELIZE: ${msg}`),
 });
 
-export const handleValidation = (
-  schema: Schema,
-  req: Request,
-  res: Response
-) => {
+export const handleValidation = (schema: Schema, req: Request) => {
+  let isValid = true;
+  let validationError = null;
+
   const validation = schema.validate(req.body);
 
   if (validation.error) {
-    res.status(400);
-    throw new Error(validation.error.details[0].message);
+    isValid = false;
+    validationError = { message: validation.error.details[0].message };
   }
 
-  return null;
+  return { isValid, validationError };
 };

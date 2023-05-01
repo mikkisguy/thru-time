@@ -1,16 +1,16 @@
 import { sequelize } from "../shared/utils";
 import { DataTypes, Model } from "sequelize";
 
-interface UserAttributes {
-  id: number;
-  uuid: string;
-  email: string;
-  username: string;
-  slug: string;
-  passwordHash: string;
-  displayName: string;
-  avatarUrl: string;
-  bio: string;
+export interface UserAttributes {
+  id?: number;
+  uuid?: string;
+  email?: string;
+  username?: string;
+  slug?: string;
+  passwordHash?: string;
+  displayName?: string;
+  avatarUrl?: string;
+  bio?: string;
 }
 
 interface UserInstance extends Model<UserAttributes>, UserAttributes {}
@@ -26,7 +26,6 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
     },
     uuid: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
     },

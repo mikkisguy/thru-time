@@ -1,7 +1,10 @@
 import express, { Request, Response, Router, NextFunction } from "express";
+import { UserModel } from "../models/user";
 import { UserPostSchema } from "../schemas/user";
-import { PATH } from "../shared/constants";
-import { handleValidation } from "../shared/utils";
+import { PATH, SALT_ROUNDS } from "../shared/constants";
+import { handleLogging, handleValidation } from "../shared/utils";
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from "uuid";
 
 const router: Router = express.Router();
 
@@ -21,14 +24,42 @@ router.post(
   PATH.USERS,
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      handleValidation(UserPostSchema, req, res);
+      const { isValid, validationError } = handleValidation(
+        UserPostSchema,
+        req
+      );
 
-      const responseJson = {
-        message: `users post route`,
-      };
+      if (!isValid && validationError) {
+        res.status(400).send(validationError);
+        return;
+      }
 
-      res.send(responseJson);
+      const { username, password, email } = req.body;
+
+      const userUuid = uuidv4();
+
+      bcrypt.hash(password, SALT_ROUNDS, async (err, hash) => {
+        if (err) {
+          handleLogging().logger.error(err);
+          next(err);
+        }
+
+        try {
+          const newUser = await UserModel.create({
+            uuid: userUuid,
+            username: username,
+            passwordHash: hash,
+            email: email,
+          });
+
+          res.send({ slug: newUser?.slug });
+        } catch (error) {
+          res.status(500);
+          next(error);
+        }
+      });
     } catch (error) {
+      res.status(500);
       next(error);
     }
   }
