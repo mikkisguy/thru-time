@@ -1,10 +1,5 @@
 import { format } from "date-fns";
-import {
-  DATE_FORMAT,
-  IS_DEV,
-  IS_PRODUCTION,
-  POSTGRES_CONNECTION_STRING,
-} from "./constants";
+import { DATE_FORMAT, IS_DEV, POSTGRES_CONNECTION_STRING } from "./constants";
 import { Request, Response, NextFunction } from "express";
 import { Sequelize } from "sequelize";
 import pino from "pino";
