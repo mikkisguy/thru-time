@@ -26,7 +26,7 @@ const ThemeContextProvider = (props: ThemeContextProviderProps) => {
         setCurrentTheme(matches ? themes.light : themes.dark);
       });
     } else {
-      setCurrentTheme(JSON.parse(localStorage.getItem("current_theme")!));
+      setCurrentTheme(JSON.parse(localStorage.getItem("current_theme") ?? ""));
     }
   }, []);
 

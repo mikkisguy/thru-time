@@ -3,6 +3,7 @@ import { PathOrFileDescriptor } from "fs";
 export const ENV = process.env.NODE_ENV;
 export const IS_PRODUCTION = ENV === "production";
 export const IS_PREVIEW = ENV === "preview";
+export const IS_DEV = ENV === "dev";
 
 export const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
@@ -11,11 +12,11 @@ export const TIME = {
   SECOND: 1000,
 };
 
-export const DB = {
-  NAME: process.env.POSTGRES_DB,
-  USER: process.env.POSTGRES_USER,
-  PASSWORD: process.env.POSTGRES_PASSWORD,
-};
+export const POSTGRES_CONNECTION_STRING =
+  "postgres://" +
+  `${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}` +
+  `@${process.env.POSTGRES_HOST}:${process.env.POSTGRES_PORT}` +
+  `/${process.env.POSTGRES_DB}`;
 
 export const SSL: {
   CERT_PATH: PathOrFileDescriptor;
@@ -35,4 +36,13 @@ export const LOG_STYLING = {
   UNDERSCORE: "\x1b[4m",
   RED: "\x1b[31m",
   CYAN: "\x1b[36m",
+};
+
+export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+
+export const BASE_PATH = "/";
+
+export const PATH = {
+  MAIN: BASE_PATH,
+  USERS: BASE_PATH + "users",
 };

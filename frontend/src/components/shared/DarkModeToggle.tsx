@@ -5,11 +5,10 @@ import styled from "styled-components";
 import { ThemeContext } from "../../shared/styles/styled";
 import { themes } from "../../shared/styles/themes";
 import { SiteThemeContext } from "../ThemeContextProvider";
+import { isDarkMode } from "../../shared/utils";
 
 const DarkModeToggle = () => {
-  const { currentTheme, setCurrentTheme } = useContext(
-    SiteThemeContext
-  ) as ThemeContext;
+  const { setCurrentTheme } = useContext(SiteThemeContext) as ThemeContext;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const getTheme = () => (e.target.checked ? themes.dark : themes.light);
@@ -18,13 +17,10 @@ const DarkModeToggle = () => {
     localStorage.setItem("current_theme", JSON.stringify(getTheme()));
   };
 
-  const isDarkMode =
-    JSON.stringify(currentTheme) === JSON.stringify(themes.dark);
-
   return (
     <ToggleForm title="Vaihda teemaa">
       <ToggleCheckbox
-        checked={isDarkMode}
+        checked={isDarkMode()}
         onChange={handleChange}
         type="checkbox"
         id="darkmode-toggle"
@@ -33,14 +29,14 @@ const DarkModeToggle = () => {
       <ToggleLabel htmlFor="darkmode-toggle">
         <Toggle>
           <ToggleIcon
-            icon={isDarkMode ? faMoon : faSun}
+            icon={isDarkMode() ? faMoon : faSun}
             size="2x"
-            className={`${isDarkMode && "dark-mode"}`}
+            className={`${isDarkMode() && "dark-mode"}`}
           />
           <ToggleButton
             icon={faCircle}
             size="2x"
-            className={`${isDarkMode && "dark-mode"}`}
+            className={`${isDarkMode() && "dark-mode"}`}
           />
           <LabelText>Tumma teema</LabelText>
         </Toggle>

@@ -30,9 +30,11 @@ services:
     environment:
       - NODE_ENV=production
       - EXPRESS_PORT=$EXPRESS_PORT
+      - POSTGRES_HOST=thru-time-postgres
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
       - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_PORT=5432
       - SSL_CERT_PATH=$SSL_CERT_PATH
       - SSL_KEY_PATH=$SSL_KEY_PATH
     volumes:
@@ -60,3 +62,4 @@ services:
     ports:
       - $REACT_PORT:443
     restart: unless-stopped
+

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DarkModeToggle from "./DarkModeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
-import DotFiImage from "../../assets/images/dot-fi.png";
+import DotFiImage from "../../assets/images/dot-fi.webp";
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
@@ -40,15 +40,20 @@ export default Header;
 const StyledHeader = styled.header`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  width: 70%;
+  align-items: center;
+  width: 100%;
   margin: ${({ theme }) => theme.spacing.xxxl} auto;
 
-  @media only screen and (max-width: 100em) {
+  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: ${({ theme }) => theme.spacing.xxl};
+    padding: 0 ${({ theme }) => theme.spacing.xxxl};
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.small}) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: ${({ theme }) => theme.spacing.xxl};
   }
 `;
 
@@ -75,6 +80,7 @@ const SiteHeadingLink = styled.a`
 const NavContainer = styled.nav`
   font: ${({ theme }) => theme.fonts.body};
   color: ${({ theme }) => theme.colors.bodyText};
+  justify-self: center;
 
   & ul {
     list-style-type: none;
@@ -88,6 +94,11 @@ const NavContainer = styled.nav`
         margin-right: ${({ theme }) => theme.spacing.xxxl};
       }
     }
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
+    order: 3;
+    justify-self: start;
   }
 `;
 
@@ -123,4 +134,5 @@ const NavLink = styled.a`
 const SiteOptions = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing.xs};
+  justify-self: end;
 `;

@@ -39,11 +39,18 @@ export type ColorStyles = {
   linkUnderline: string;
 };
 
+export type Breakpoints = {
+  wide: string;
+  narrow: string;
+  small: string;
+};
+
 declare module "styled-components" {
   export interface DefaultTheme {
     spacing: SpacingStyles;
     transition: TransitionStyles;
     fonts: FontStyles;
+    bp: Breakpoints;
     colors: ColorStyles;
   }
 }
@@ -57,6 +64,7 @@ export type BaseStyles = {
   spacing: SpacingStyles;
   transition: TransitionStyles;
   fonts: FontStyles;
+  bp: Breakpoints;
 };
 
 export type ThemeContext = {
