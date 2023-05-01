@@ -9,6 +9,7 @@ import { Request, Response, NextFunction } from "express";
 import { Sequelize } from "sequelize";
 import pino from "pino";
 import pinoHttp, { HttpLogger } from "pino-http";
+import { Schema } from "joi";
 
 export const handleLogging = () => {
   const loggerMiddleware: HttpLogger = pinoHttp({
@@ -38,7 +39,7 @@ export const handleLogging = () => {
 
 const { logger } = handleLogging();
 
-export const requestErrorHandler = (
+export const handleRequestError = (
   error: Error,
   request: Request,
   response: Response,
@@ -71,3 +72,18 @@ export const requestErrorHandler = (
 export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
   logging: (...msg) => logger.info(`SEQUELIZE: ${msg}`),
 });
+
+export const handleValidation = (
+  schema: Schema,
+  req: Request,
+  res: Response
+) => {
+  const validation = schema.validate(req.body);
+
+  if (validation.error) {
+    res.status(400);
+    throw new Error(validation.error.details[0].message);
+  }
+
+  return null;
+};

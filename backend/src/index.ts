@@ -9,7 +9,7 @@ import bodyParser from "body-parser";
 import { EXPRESS_PORT, SSL, TIME, ENV, IS_DEV } from "./shared/constants";
 import { initDatabase } from "./shared/sequelize";
 import routeController from "./routes";
-import { handleLogging, requestErrorHandler } from "./shared/utils";
+import { handleLogging, handleRequestError } from "./shared/utils";
 
 const app: Application = express();
 
@@ -52,7 +52,7 @@ app.use(
 routeController(app);
 
 // Error handler
-app.use(requestErrorHandler);
+app.use(handleRequestError);
 
 // GO!
 httpsServer.listen(EXPRESS_PORT, (): void => {

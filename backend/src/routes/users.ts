@@ -1,6 +1,7 @@
 import express, { Request, Response, Router, NextFunction } from "express";
 import { UserPostSchema } from "../schemas/user";
 import { PATH } from "../shared/constants";
+import { handleValidation } from "../shared/utils";
 
 const router: Router = express.Router();
 
@@ -20,12 +21,7 @@ router.post(
   PATH.USERS,
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const validation = UserPostSchema.validate(req.body);
-
-      if (validation.error) {
-        res.status(400);
-        throw new Error(validation.error.details[0].message);
-      }
+      handleValidation(UserPostSchema, req, res);
 
       const responseJson = {
         message: `users post route`,
