@@ -24,7 +24,7 @@ const httpsServer = https.createServer(
 const { logger } = handleLogging();
 
 // Middleware
-app.use(handleLogging);
+app.use(handleLogging());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

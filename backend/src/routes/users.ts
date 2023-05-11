@@ -26,12 +26,9 @@ router.post(
   PATH.USERS,
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const { isValid, validationError } = handleValidation(
-        UserPostSchema,
-        req
-      );
+      const validationError = handleValidation(UserPostSchema, req);
 
-      if (!isValid && validationError) {
+      if (validationError) {
         res.status(400).send(validationError);
         return;
       }

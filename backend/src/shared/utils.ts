@@ -75,15 +75,13 @@ export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
 });
 
 export const handleValidation = (schema: Schema, req: Request) => {
-  let isValid = true;
   let validationError = null;
 
   const validation = schema.validate(req.body);
 
   if (validation.error) {
-    isValid = false;
     validationError = { message: validation.error.details[0].message };
   }
 
-  return { isValid, validationError };
+  return validationError;
 };
