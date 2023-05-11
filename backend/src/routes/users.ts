@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const router: Router = express.Router();
 
+const { logger } = handleLogging();
+
 router.get(PATH.USERS, (_, res: Response, next: NextFunction): void => {
   try {
     const responseJson = {
@@ -40,7 +42,7 @@ router.post(
 
       bcrypt.hash(password, SALT_ROUNDS, async (err, hash) => {
         if (err) {
-          handleLogging().logger.error(err);
+          logger.error(err);
           next(err);
         }
 

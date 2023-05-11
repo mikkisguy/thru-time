@@ -21,10 +21,10 @@ const httpsServer = https.createServer(
   app
 );
 
-const { loggerMiddleware, logger } = handleLogging();
+const { logger } = handleLogging();
 
 // Middleware
-app.use(loggerMiddleware);
+app.use(handleLogging);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());

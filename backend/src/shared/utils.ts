@@ -3,11 +3,11 @@ import { DATE_FORMAT, IS_DEV, POSTGRES_CONNECTION_STRING } from "./constants";
 import { Request, Response, NextFunction } from "express";
 import { Sequelize } from "sequelize";
 import pino from "pino";
-import pinoHttp, { HttpLogger } from "pino-http";
+import pinoHttp from "pino-http";
 import { Schema } from "joi";
 
 export const handleLogging = () => {
-  const loggerMiddleware: HttpLogger = pinoHttp({
+  return pinoHttp({
     logger: pino(
       IS_DEV
         ? {
@@ -25,11 +25,6 @@ export const handleLogging = () => {
     },
     timestamp: () => `,"timestamp":"${format(new Date(), DATE_FORMAT)}"`,
   });
-
-  return {
-    loggerMiddleware,
-    logger: loggerMiddleware.logger,
-  };
 };
 
 const { logger } = handleLogging();
