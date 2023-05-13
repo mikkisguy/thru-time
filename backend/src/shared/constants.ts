@@ -48,3 +48,7 @@ export const PATH = {
 };
 
 export const SALT_ROUNDS = 12;
+
+export const GENERAL_SETTING = {
+  ALLOW_SIGNUPS: "ALLOW_SIGNUPS",
+};

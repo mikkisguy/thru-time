@@ -27,7 +27,7 @@ export const handleLogging = () => {
   });
 };
 
-const { logger } = handleLogging();
+export const { logger } = handleLogging();
 
 export const handleRequestError = (
   error: Error,
