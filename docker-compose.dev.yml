@@ -8,6 +8,7 @@ services:
       - POSTGRES_USER=dev_thrutime_user
       - POSTGRES_PASSWORD=dev_thrutime_password
       - POSTGRES_DB=dev_thrutime_db
+      - TZ=Europe/Helsinki
     volumes:
       - ./database/dev-data:/var/lib/postgresql/data/
     ports:
