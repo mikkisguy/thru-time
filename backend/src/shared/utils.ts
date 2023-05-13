@@ -29,6 +29,12 @@ export const handleLogging = () => {
 
 export const { logger } = handleLogging();
 
+export const getResponseMsg = (message: string | Error) => {
+  return {
+    message,
+  };
+};
+
 export const handleRequestError = (
   error: Error,
   request: Request,
@@ -61,10 +67,10 @@ export const handleRequestError = (
         return error;
       }
 
-      return { message: error };
+      return getResponseMsg(error);
     }
 
-    return { message: error.name ? error.name : "Error" };
+    return getResponseMsg(error.name ? error.name : "Error");
   };
 
   response.status(statusCode).send(getErrorResponse());
@@ -80,7 +86,7 @@ export const handleValidation = (schema: Schema, req: Request) => {
   const validation = schema.validate(req.body);
 
   if (validation.error) {
-    validationError = { message: validation.error.details[0].message };
+    validationError = getResponseMsg(validation.error.details[0].message);
   }
 
   return validationError;

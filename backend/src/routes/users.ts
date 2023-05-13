@@ -1,10 +1,15 @@
 import express, { Request, Response, Router, NextFunction } from "express";
 import { UserModel } from "../models/user";
 import { UserPostSchema } from "../schemas/user";
-import { PATH, SALT_ROUNDS } from "../shared/constants";
-import { handleLogging, handleValidation } from "../shared/utils";
+import { GENERAL_SETTING_KEY, PATH, SALT_ROUNDS } from "../shared/constants";
+import {
+  getResponseMsg,
+  handleLogging,
+  handleValidation,
+} from "../shared/utils";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
+import { fetchGeneralSetting } from "../appInit";
 
 const router: Router = express.Router();
 
@@ -26,6 +31,17 @@ router.post(
   PATH.USERS,
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
+      // Is sign ups allowed?
+      const isSignUpsAllowed = await fetchGeneralSetting(
+        GENERAL_SETTING_KEY.ALLOW_SIGNUPS
+      );
+
+      if (!isSignUpsAllowed) {
+        res.status(400).send(getResponseMsg("Sign ups are closed"));
+        return;
+      }
+
+      // Is the request valid?
       const validationError = handleValidation(UserPostSchema, req);
 
       if (validationError) {
@@ -33,6 +49,7 @@ router.post(
         return;
       }
 
+      // Create new user
       const { username, password, email } = req.body;
 
       const userUuid = uuidv4();

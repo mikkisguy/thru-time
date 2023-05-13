@@ -49,6 +49,6 @@ export const PATH = {
 
 export const SALT_ROUNDS = 12;
 
-export const GENERAL_SETTING = {
+export const GENERAL_SETTING_KEY = {
   ALLOW_SIGNUPS: "ALLOW_SIGNUPS",
 };
