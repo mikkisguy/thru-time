@@ -9,7 +9,7 @@ import bodyParser from "body-parser";
 import { EXPRESS_PORT, SSL, TIME, ENV, IS_DEV } from "./shared/constants";
 import routeController from "./routes";
 import { handleLogging, handleRequestError, logger } from "./shared/utils";
-import { handleAppInitialization } from "./appInit";
+import { handleAppInitialization } from "./init";
 
 const app: Application = express();
 

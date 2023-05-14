@@ -9,7 +9,7 @@ import {
 } from "../shared/utils";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
-import { fetchGeneralSetting } from "../appInit";
+import { fetchGeneralSetting } from "../init";
 
 const router: Router = express.Router();
 
