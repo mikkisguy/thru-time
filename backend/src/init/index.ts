@@ -1,9 +1,11 @@
 import { setDefaultSettings } from "./setDefaultSettings";
 import { GeneralSettingModel, initDatabase } from "./initDatabase";
+import { seedDatabase } from "./seedDatabase";
 
 export const handleAppInitialization = async () => {
   await initDatabase();
   setDefaultSettings();
+  seedDatabase();
 };
 
 export const fetchGeneralSetting = async (settingKey: string) => {
