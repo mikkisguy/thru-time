@@ -10,7 +10,14 @@ export const seedDatabase = () => {
     return;
   }
 
-  bcrypt.hash(process.env.SEED_DATA_PASSWORD!, SALT_ROUNDS, (err, hash) => {
+  const ENV = {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    USER_PASSWORD: process.env.SEED_DATA_PASSWORD!,
+    USER_NAME: process.env.SEED_DATA_USER,
+    USER_EMAIL: process.env.SEED_DATA_EMAIL,
+  };
+
+  bcrypt.hash(ENV.USER_PASSWORD, SALT_ROUNDS, (err, hash) => {
     if (err) {
       logger.error(err);
     }
@@ -18,9 +25,9 @@ export const seedDatabase = () => {
     try {
       UserModel.create({
         uuid: uuidv4(),
-        username: process.env.SEED_DATA_USER,
+        username: ENV.USER_NAME,
         passwordHash: hash,
-        email: process.env.SEED_DATA_EMAIL,
+        email: ENV.USER_EMAIL,
       });
     } catch (error) {
       logger.error(error);
