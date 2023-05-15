@@ -1,8 +1,9 @@
 import { sequelize } from "../shared/utils";
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, UUIDV4 } from "sequelize";
 
 export interface GeneralSettingsAttributes {
   id?: number;
+  uuid?: string;
   settingKey?: string;
   settingValue?: string | boolean;
 }
@@ -22,6 +23,12 @@ export const GeneralSettingModel = sequelize.define<
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
+    },
+    uuid: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      unique: true,
+      defaultValue: UUIDV4,
     },
     settingKey: {
       type: DataTypes.STRING(32),

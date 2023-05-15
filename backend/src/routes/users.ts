@@ -8,7 +8,6 @@ import {
   handleValidation,
 } from "../shared/utils";
 import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from "uuid";
 import { fetchGeneralSetting } from "../init";
 
 const router: Router = express.Router();
@@ -52,8 +51,6 @@ router.post(
       // Create new user
       const { username, password, email } = req.body;
 
-      const userUuid = uuidv4();
-
       bcrypt.hash(password, SALT_ROUNDS, async (err, hash) => {
         if (err) {
           logger.error(err);
@@ -62,7 +59,6 @@ router.post(
 
         try {
           const newUser = await UserModel.create({
-            uuid: userUuid,
             username: username,
             passwordHash: hash,
             email: email,

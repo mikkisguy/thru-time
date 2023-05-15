@@ -1,5 +1,5 @@
 import { sequelize } from "../shared/utils";
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, UUIDV4 } from "sequelize";
 
 export interface UserAttributes {
   id?: number;
@@ -28,6 +28,7 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
       type: DataTypes.UUID,
       allowNull: false,
       unique: true,
+      defaultValue: UUIDV4,
     },
     email: {
       type: DataTypes.STRING(254),
