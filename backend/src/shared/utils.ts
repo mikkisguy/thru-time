@@ -5,6 +5,10 @@ import { Sequelize } from "sequelize";
 import pino from "pino";
 import pinoHttp from "pino-http";
 import { Schema } from "joi";
+import slugify from "slugify";
+
+export const getSlug = (stringToSlugify: string) =>
+  slugify(stringToSlugify, { lower: true, strict: true });
 
 export const handleLogging = () => {
   return pinoHttp({

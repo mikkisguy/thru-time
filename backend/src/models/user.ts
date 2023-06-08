@@ -1,4 +1,4 @@
-import { sequelize } from "../shared/utils";
+import { getSlug, sequelize } from "../shared/utils";
 import { DataTypes, Model, UUIDV4 } from "sequelize";
 
 export interface UserAttributes {
@@ -65,7 +65,7 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
       beforeValidate: (user: UserInstance) => {
         // Update slug
         if (user.username) {
-          user.slug = user.username.toLowerCase();
+          user.slug = getSlug(user.username);
         }
       },
     },
