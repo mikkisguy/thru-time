@@ -1,6 +1,6 @@
 import express, { Request, Response, Router, NextFunction } from "express";
-import { UserModel } from "../models/user";
-import { UserPostSchema } from "../schemas/user";
+import UserModel from "../models/User";
+import { UserPostSchema } from "../schemas/User";
 import { GENERAL_SETTING_KEY, PATH, SALT_ROUNDS } from "../shared/constants";
 import {
   getResponseMsg,

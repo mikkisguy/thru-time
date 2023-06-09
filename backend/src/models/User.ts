@@ -1,7 +1,8 @@
 import { getSlug, sequelize } from "../shared/utils";
 import { DataTypes, Model, UUIDV4 } from "sequelize";
+import BlogPostModel from "./BlogPost";
 
-export interface UserAttributes {
+interface UserAttributes {
   id?: number;
   uuid?: string;
   email?: string;
@@ -15,7 +16,7 @@ export interface UserAttributes {
 
 interface UserInstance extends Model<UserAttributes>, UserAttributes {}
 
-export const UserModel = sequelize.define<UserInstance, UserAttributes>(
+const UserModel = sequelize.define<UserInstance, UserAttributes>(
   "User",
   {
     id: {
@@ -71,3 +72,8 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
     },
   }
 );
+
+UserModel.hasMany(BlogPostModel);
+BlogPostModel.belongsTo(UserModel);
+
+export default UserModel;

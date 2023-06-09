@@ -1,7 +1,7 @@
 import { sequelize } from "../shared/utils";
 import { DataTypes, Model, UUIDV4 } from "sequelize";
 
-export interface GeneralSettingsAttributes {
+interface GeneralSettingsAttributes {
   id?: number;
   uuid?: string;
   settingKey?: string;
@@ -12,7 +12,7 @@ interface GeneralSettingsInstance
   extends Model<GeneralSettingsAttributes>,
     GeneralSettingsAttributes {}
 
-export const GeneralSettingModel = sequelize.define<
+const GeneralSettingModel = sequelize.define<
   GeneralSettingsInstance,
   GeneralSettingsAttributes
 >(
@@ -43,3 +43,5 @@ export const GeneralSettingModel = sequelize.define<
     underscored: true,
   }
 );
+
+export default GeneralSettingModel;

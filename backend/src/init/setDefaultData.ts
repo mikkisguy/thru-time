@@ -1,5 +1,5 @@
-import { LanguageModel } from "../models/language";
-import { GENERAL_SETTING_KEY } from "../shared/constants";
+import LanguageModel from "../models/Language";
+import { GENERAL_SETTING_KEY, LANGUAGE } from "../shared/constants";
 import { GeneralSettingModel } from "./initDatabase";
 
 export const setDefaultData = async () => {
@@ -7,5 +7,8 @@ export const setDefaultData = async () => {
     { settingKey: GENERAL_SETTING_KEY.ALLOW_SIGNUPS, settingValue: false },
   ]);
 
-  await LanguageModel.bulkCreate([{ language: "fi" }, { language: "en" }]);
+  await LanguageModel.bulkCreate([
+    { language: LANGUAGE.FI },
+    { language: LANGUAGE.EN },
+  ]);
 };
