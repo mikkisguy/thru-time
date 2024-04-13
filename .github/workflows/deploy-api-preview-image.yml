@@ -5,8 +5,8 @@ on:
     branches:
       - preview
     paths:
-      - "backend/**"
-      - "!backend/Thru-Time-API.yaml"
+      - 'backend/**'
+      - '!backend/Thru-Time-API.yaml'
 
 env:
   REGISTRY: ghcr.io
