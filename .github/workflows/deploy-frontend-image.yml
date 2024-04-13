@@ -2,10 +2,10 @@ name: Deploy frontend image
 
 on:
   push:
-    branches: 
+    branches:
       - main
     paths:
-      - 'frontend/**'
+      - "frontend/**"
 
 env:
   REGISTRY: ghcr.io
@@ -28,10 +28,11 @@ jobs:
       - name: Setup Node 16
         uses: actions/setup-node@v3
         with:
-          node-version: '16.16'
+          node-version: "16.16"
 
       - name: Build frontend
         run: |
+          corepack enable
           cd frontend
           yarn install --pure-lockfile
           yarn build
