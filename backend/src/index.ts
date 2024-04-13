@@ -7,24 +7,14 @@ import rateLimit from "express-rate-limit";
 import bodyParser from "body-parser";
 
 import { EXPRESS_PORT, SSL, TIME, ENV, IS_DEV } from "./shared/constants";
-import { initDatabase } from "./shared/sequelize";
 import routeController from "./routes";
-import { handleLogging, handleRequestError } from "./shared/utils";
+import { handleLogging, handleRequestError, logger } from "./shared/utils";
+import { handleAppInitialization } from "./init";
 
 const app: Application = express();
 
-const httpsServer = https.createServer(
-  {
-    cert: fs.readFileSync(SSL.CERT_PATH),
-    key: fs.readFileSync(SSL.KEY_PATH),
-  },
-  app
-);
-
-const { loggerMiddleware, logger } = handleLogging();
-
 // Middleware
-app.use(loggerMiddleware);
+app.use(handleLogging());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -55,14 +45,22 @@ routeController(app);
 app.use(handleRequestError);
 
 // GO!
-httpsServer.listen(EXPRESS_PORT, (): void => {
-  logger.info(
-    `*** THRU TIME ${ENV?.toUpperCase()} BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***`
-  );
+https
+  .createServer(
+    {
+      cert: fs.readFileSync(SSL.CERT_PATH),
+      key: fs.readFileSync(SSL.KEY_PATH),
+    },
+    app
+  )
+  .listen(EXPRESS_PORT, (): void => {
+    logger.info(
+      `*** THRU TIME ${ENV?.toUpperCase()} BACKEND RUNNING ON PORT ${EXPRESS_PORT} ***`
+    );
 
-  try {
-    initDatabase();
-  } catch (error) {
-    logger.error(error);
-  }
-});
+    try {
+      handleAppInitialization();
+    } catch (error) {
+      logger.error(error);
+    }
+  });

@@ -1,18 +1,17 @@
 import { format } from "date-fns";
-import {
-  DATE_FORMAT,
-  IS_DEV,
-  IS_PRODUCTION,
-  POSTGRES_CONNECTION_STRING,
-} from "./constants";
+import { DATE_FORMAT, IS_DEV, POSTGRES_CONNECTION_STRING } from "./constants";
 import { Request, Response, NextFunction } from "express";
 import { Sequelize } from "sequelize";
 import pino from "pino";
-import pinoHttp, { HttpLogger } from "pino-http";
+import pinoHttp from "pino-http";
 import { Schema } from "joi";
+import slugify from "slugify";
+
+export const getSlug = (stringToSlugify: string) =>
+  slugify(stringToSlugify, { lower: true, strict: true });
 
 export const handleLogging = () => {
-  const loggerMiddleware: HttpLogger = pinoHttp({
+  return pinoHttp({
     logger: pino(
       IS_DEV
         ? {
@@ -30,14 +29,15 @@ export const handleLogging = () => {
     },
     timestamp: () => `,"timestamp":"${format(new Date(), DATE_FORMAT)}"`,
   });
-
-  return {
-    loggerMiddleware,
-    logger: loggerMiddleware.logger,
-  };
 };
 
-const { logger } = handleLogging();
+export const { logger } = handleLogging();
+
+export const getResponseMsg = (message: string | Error) => {
+  return {
+    message,
+  };
+};
 
 export const handleRequestError = (
   error: Error,
@@ -46,7 +46,7 @@ export const handleRequestError = (
   next: NextFunction
 ): void => {
   const errorLogMessage = `Request ${request.method} ${request.url} -> ${
-    IS_PRODUCTION ? error.message : error.stack
+    error.name + "\n" + error.stack
   }`;
 
   let statusCode = 500;
@@ -65,25 +65,33 @@ export const handleRequestError = (
 
   logger.error(errorLogMessage);
 
-  response.status(statusCode);
-  response.send({ errorMessage: error.message });
+  const getErrorResponse = () => {
+    if (IS_DEV) {
+      if (error === Object(error)) {
+        return error;
+      }
+
+      return getResponseMsg(error);
+    }
+
+    return getResponseMsg(error.name ? error.name : "Error");
+  };
+
+  response.status(statusCode).send(getErrorResponse());
 };
 
 export const sequelize = new Sequelize(POSTGRES_CONNECTION_STRING, {
   logging: (...msg) => logger.info(`SEQUELIZE: ${msg}`),
 });
 
-export const handleValidation = (
-  schema: Schema,
-  req: Request,
-  res: Response
-) => {
+export const handleValidation = (schema: Schema, req: Request) => {
+  let validationError = null;
+
   const validation = schema.validate(req.body);
 
   if (validation.error) {
-    res.status(400);
-    throw new Error(validation.error.details[0].message);
+    validationError = getResponseMsg(validation.error.details[0].message);
   }
 
-  return null;
+  return validationError;
 };

@@ -1,21 +1,22 @@
-import { sequelize } from "../shared/utils";
-import { DataTypes, Model } from "sequelize";
+import { getSlug, sequelize } from "../shared/utils";
+import { DataTypes, Model, UUIDV4 } from "sequelize";
+import BlogPostModel from "./BlogPost";
 
 interface UserAttributes {
-  id: number;
-  uuid: string;
-  email: string;
-  username: string;
-  slug: string;
-  passwordHash: string;
-  displayName: string;
-  avatarUrl: string;
-  bio: string;
+  id?: number;
+  uuid?: string;
+  email?: string;
+  username?: string;
+  slug?: string;
+  passwordHash?: string;
+  displayName?: string;
+  avatarUrl?: string;
+  bio?: string;
 }
 
 interface UserInstance extends Model<UserAttributes>, UserAttributes {}
 
-export const UserModel = sequelize.define<UserInstance, UserAttributes>(
+const UserModel = sequelize.define<UserInstance, UserAttributes>(
   "User",
   {
     id: {
@@ -26,9 +27,9 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
     },
     uuid: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
+      defaultValue: UUIDV4,
     },
     email: {
       type: DataTypes.STRING(254),
@@ -65,9 +66,14 @@ export const UserModel = sequelize.define<UserInstance, UserAttributes>(
       beforeValidate: (user: UserInstance) => {
         // Update slug
         if (user.username) {
-          user.slug = user.username.toLowerCase();
+          user.slug = getSlug(user.username);
         }
       },
     },
   }
 );
+
+UserModel.hasMany(BlogPostModel);
+BlogPostModel.belongsTo(UserModel);
+
+export default UserModel;

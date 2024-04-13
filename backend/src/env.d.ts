@@ -8,5 +8,8 @@ declare namespace NodeJS {
     POSTGRES_PASSWORD: string;
     POSTGRES_DB: string;
     POSTGRES_PORT: string;
+    SEED_DATA_USER: string;
+    SEED_DATA_PASSWORD: string;
+    SEED_DATA_EMAIL: string;
   }
 }

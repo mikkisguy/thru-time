@@ -46,3 +46,21 @@ export const PATH = {
   MAIN: BASE_PATH,
   USERS: BASE_PATH + "users",
 };
+
+export const SALT_ROUNDS = 12;
+
+export const GENERAL_SETTING_KEY = {
+  ALLOW_SIGNUPS: "ALLOW_SIGNUPS",
+};
+
+export const BLOG_POST_STATUS = {
+  DRAFT: "DRAFT",
+  PRIVATE: "PRIVATE",
+  PUBLISHED: "PUBLISHED",
+  PROTECTED: "PROTECTED",
+};
+
+export const LANGUAGE = {
+  FI: "FI",
+  EN: "EN",
+};
