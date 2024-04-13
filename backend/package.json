@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon -r dotenv/config ./src/index.ts",
-    "start": "ts-node --esm --transpileOnly -r dotenv/config ./src/index.ts"
+    "start": "tsc && node ./dist/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

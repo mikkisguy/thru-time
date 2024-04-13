@@ -12,7 +12,9 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "dist",
+    "rootDir": "src",
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]
