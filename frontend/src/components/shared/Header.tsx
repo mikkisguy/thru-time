@@ -68,7 +68,7 @@ const SiteHeadingLink = styled.a`
   color: ${({ theme }) => theme.colors.heading};
   text-decoration: none;
 
-  :focus {
+  &:focus {
     outline: none;
     text-decoration-line: underline;
     text-decoration-style: wavy;
@@ -109,17 +109,17 @@ const NavLink = styled.a`
   text-transform: uppercase;
   position: relative;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     outline: none;
 
-    ::after {
+    &::after {
       width: 100%;
       left: 0;
     }
   }
 
-  ::after {
+  &::after {
     content: "";
     position: absolute;
     width: 0;

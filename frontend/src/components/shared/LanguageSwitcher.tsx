@@ -37,8 +37,8 @@ const LanguageButton = styled.button`
   font: ${({ theme }) => theme.fonts.meta};
   color: ${({ theme }) => theme.colors.bodyTextSecondary};
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     outline: 2px solid ${({ theme }) => theme.colors.outline}80;
   }
 `;
