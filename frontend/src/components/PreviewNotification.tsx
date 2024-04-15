@@ -88,8 +88,8 @@ const CommitLink = styled.a`
   color: ${({ theme }) => theme.colors.bodyTextSecondary};
   text-decoration: none;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     outline: none;
     text-decoration-line: underline;
     text-decoration-style: wavy;

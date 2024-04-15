@@ -1,5 +1,4 @@
 import { Trans, useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import DarkModeToggle from "./shared/DarkModeToggle";
 import LanguageSwitcher from "./shared/LanguageSwitcher";
@@ -74,8 +73,8 @@ const TemporaryText = styled.div`
     text-decoration-color: ${({ theme }) => theme.colors.linkUnderline};
     text-underline-offset: 0.3em;
 
-    :hover,
-    :focus {
+    &:hover,
+    &:focus {
       outline: none;
       text-decoration: none;
     }

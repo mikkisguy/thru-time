@@ -55,13 +55,13 @@ const Toggle = styled.div`
   transition: background-color 0.25s;
   width: 4.5rem;
 
-  :hover {
+  &:hover {
     outline: 2px solid ${({ theme }) => theme.colors.outline}80;
   }
 `;
 
 const ToggleForm = styled.form`
-  :focus-within ${Toggle} {
+  &:focus-within ${Toggle} {
     outline: 2px solid ${({ theme }) => theme.colors.outline}80;
   }
 `;

@@ -31,27 +31,18 @@ export const JWT = {
   ALGORITHM: "HS256",
 };
 
-export const LOG_STYLING = {
-  RESET: "\x1b[0m",
-  UNDERSCORE: "\x1b[4m",
-  RED: "\x1b[31m",
-  CYAN: "\x1b[36m",
-};
-
 export const DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 
 export const BASE_PATH = "/";
-
-export const PATH = {
-  MAIN: BASE_PATH,
-  USERS: BASE_PATH + "users",
-};
+export const USER_PATH = BASE_PATH + "users";
+export const LOGIN_PATH = BASE_PATH + "login";
+export const SIGNUP_PATH = BASE_PATH + "signup";
 
 export const SALT_ROUNDS = 12;
 
-export const GENERAL_SETTING_KEY = {
-  ALLOW_SIGNUPS: "ALLOW_SIGNUPS",
-};
+// export const GENERAL_SETTING_KEY = {
+//   // TODO
+// };
 
 export const BLOG_POST_STATUS = {
   DRAFT: "DRAFT",
