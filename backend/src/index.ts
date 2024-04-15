@@ -8,7 +8,12 @@ import bodyParser from "body-parser";
 
 import { EXPRESS_PORT, SSL, TIME, ENV, IS_DEV } from "./shared/constants";
 import routeController from "./routes";
-import { handleLogging, handleRequestError, logger } from "./shared/utils";
+import {
+  gracefulShutdown,
+  handleLogging,
+  handleRequestError,
+  logger,
+} from "./shared/utils";
 import { handleAppInitialization } from "./init";
 
 const app: Application = express();
@@ -45,7 +50,7 @@ routeController(app);
 app.use(handleRequestError);
 
 // GO!
-https
+const server = https
   .createServer(
     {
       cert: fs.readFileSync(SSL.CERT_PATH),
@@ -64,3 +69,7 @@ https
       logger.error(error);
     }
   });
+
+// Gracefully shutdown the server
+process.on("SIGINT", () => gracefulShutdown(server));
+process.on("SIGTERM", () => gracefulShutdown(server));

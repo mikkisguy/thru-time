@@ -6,6 +6,7 @@ import pino from "pino";
 import pinoHttp from "pino-http";
 import { Schema } from "joi";
 import slugify from "slugify";
+import https from "https";
 
 export const getSlug = (stringToSlugify: string) =>
   slugify(stringToSlugify, { lower: true, strict: true });
@@ -94,4 +95,23 @@ export const handleValidation = (schema: Schema, req: Request) => {
   }
 
   return validationError;
+};
+
+/**
+ * Gracefully shuts down the server and closes the database connection.
+ *
+ * @param {https.Server} server - The server to shut down.
+ * @return {Promise<void>} - A Promise that resolves when the server is closed.
+ */
+export const gracefulShutdown = async (server: https.Server): Promise<void> => {
+  logger.info("Received kill signal, shutting down gracefully...");
+
+  await sequelize
+    .close()
+    .then(() => logger.info("Database connection closed."));
+
+  server.close(() => {
+    logger.info("Server closed.");
+    process.exit(0);
+  });
 };
