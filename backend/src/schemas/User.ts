@@ -9,13 +9,6 @@ const password = Joi.string()
   .messages({
     "string.pattern.base": "Invalid password",
   });
-const email = Joi.string().email().required();
-
-export const UserPostSchema = Joi.object({
-  username,
-  password,
-  email,
-});
 
 export const UserLoginSchema = Joi.object({
   username,

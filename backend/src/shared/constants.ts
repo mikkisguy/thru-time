@@ -40,9 +40,9 @@ export const SIGNUP_PATH = BASE_PATH + "signup";
 
 export const SALT_ROUNDS = 12;
 
-export const GENERAL_SETTING_KEY = {
-  ALLOW_SIGNUPS: "ALLOW_SIGNUPS",
-};
+// export const GENERAL_SETTING_KEY = {
+//   // TODO
+// };
 
 export const BLOG_POST_STATUS = {
   DRAFT: "DRAFT",
