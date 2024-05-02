@@ -4,6 +4,7 @@ import App from "./components/App";
 import "./shared/translations/i18n";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/pages/Home";
+import Login from "./components/pages/Login";
 
 const Routing = () => {
   return (
@@ -11,6 +12,7 @@ const Routing = () => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
