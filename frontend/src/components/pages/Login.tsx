@@ -30,4 +30,8 @@ const LoginHeader = styled.h2`
 const LoginBox = styled(ContentBox)`
   width: 30rem;
   margin: 0 auto;
+
+  @media only screen and (max-width: ${({ theme }) => theme.bp.small}) {
+    width: 100%;
+  }
 `;
