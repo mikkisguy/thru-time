@@ -17,6 +17,11 @@ const english: TranslationResource = {
     blog: "Blog",
     about: "About",
   },
+  footer: {
+    copyright: "Site and blog",
+    login: "Login",
+    source: "Source",
+  },
   login: {
     title: "Login",
     username: "Username",

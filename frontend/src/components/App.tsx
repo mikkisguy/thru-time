@@ -5,6 +5,7 @@ import {
 } from "../shared/constants";
 import GlobalStyle from "../shared/styles/globalStyle";
 import PreviewNotification from "./PreviewNotification";
+import Footer from "./shared/Footer";
 import Header from "./shared/Header";
 import TemporaryInformation from "./TemporaryInformation";
 import ThemeContextProvider from "./ThemeContextProvider";
@@ -24,6 +25,7 @@ const App = () => {
               <Header />
               <Outlet />
             </SiteContainer>
+            <Footer/>
           </SiteOuterContainer>
         </>
       ) : (
@@ -36,13 +38,16 @@ const App = () => {
 export default App;
 
 const SiteOuterContainer = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
 `;
 
 const SiteContainer = styled.div`
   place-self: center;
   width: 60%;
+  flex: 1;
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.wide}) {
     width: 65%;

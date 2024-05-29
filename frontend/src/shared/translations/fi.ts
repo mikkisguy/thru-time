@@ -17,6 +17,11 @@ const finnish: TranslationResource = {
     blog: "Blogi",
     about: "Tietoa",
   },
+  footer: {
+    copyright: "Sivusto ja blogi",
+    login: "Kirjautuminen",
+    source: "Lähdekoodi",
+  },
   login: {
     title: "Kirjautuminen",
     username: "Tunnus",
