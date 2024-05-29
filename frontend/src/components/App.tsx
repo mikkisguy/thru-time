@@ -1,7 +1,4 @@
-import {
-  IS_DEVELOPMENT,
-  IS_PREVIEW_SITE,
-} from "../shared/constants";
+import { IS_DEVELOPMENT, IS_PREVIEW_SITE } from "../shared/constants";
 import GlobalStyle from "../shared/styles/globalStyle";
 import PreviewNotification from "./PreviewNotification";
 import Footer from "./shared/Footer";

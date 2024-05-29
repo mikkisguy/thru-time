@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Footer = () => {
   const { t } = useTranslation();
-  
+
   return (
     <FooterContainer>
       <p>
@@ -12,11 +12,13 @@ const Footer = () => {
       </p>
       <p>
         <Link to="/login">{t("footer.login")}</Link> -{" "}
-        <a href="https://github.com/mikkisguy/thru-time" target="_blank">{t("footer.source")}</a>
+        <a href="https://github.com/mikkisguy/thru-time" target="_blank">
+          {t("footer.source")}
+        </a>
       </p>
     </FooterContainer>
   );
-}
+};
 
 export default Footer;
 

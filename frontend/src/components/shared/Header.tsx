@@ -49,7 +49,8 @@ const StyledHeader = styled.header`
   @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
     grid-template-columns: repeat(2, 1fr);
     gap: ${({ theme }) => theme.spacing.xxl};
-    padding: 0 ${({ theme }) => theme.spacing.xxxl} ${({ theme }) => theme.spacing.xxxl} ${({ theme }) => theme.spacing.xxxl};
+    padding: 0 ${({ theme }) => theme.spacing.xxxl}
+      ${({ theme }) => theme.spacing.xxxl} ${({ theme }) => theme.spacing.xxxl};
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.small}) {

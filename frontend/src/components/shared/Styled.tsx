@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const ContentBox = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundTertiary};
   padding: ${({ theme }) => theme.spacing.xl};
-`
+`;
 
 const FormElementBaseStyles = css`
   font: ${({ theme }) => theme.fonts.body};
@@ -24,7 +24,7 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.colors.bodyText};
   box-shadow: ${({ theme }) => theme.colors.shadow} 0 0 0.3rem 0 inset;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-`
+`;
 
 export const Button = styled.button`
   ${FormElementBaseStyles}
@@ -36,11 +36,11 @@ export const Button = styled.button`
   margin-top: ${({ theme }) => theme.spacing.xl};
 
   &:hover {
-   background-color: ${({ theme }) => theme.colors.accent}90;
+    background-color: ${({ theme }) => theme.colors.accent}90;
   }
 `;
 
 export const Label = styled.label`
   font: ${({ theme }) => theme.fonts.body};
   color: ${({ theme }) => theme.colors.bodyText};
-`
+`;
