@@ -31,11 +31,11 @@ const FooterContainer = styled.footer`
     font: ${({ theme }) => theme.fonts.meta};
     color: ${({ theme }) => theme.colors.bodyTextSecondary};
     outline: none;
+    text-underline-offset: ${({ theme }) => theme.spacing.xs};
 
     &:hover,
     &:focus {
       color: ${({ theme }) => theme.colors.linkText};
-      text-decoration-line: underline;
       text-decoration-style: wavy;
       text-decoration-thickness: 0.04em;
       text-decoration-color: ${({ theme }) => theme.colors.linkUnderline};
