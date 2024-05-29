@@ -1,7 +1,6 @@
 import {
   IS_DEVELOPMENT,
   IS_PREVIEW_SITE,
-  LATEST_COMMIT_SHA,
 } from "../shared/constants";
 import GlobalStyle from "../shared/styles/globalStyle";
 import PreviewNotification from "./PreviewNotification";
@@ -17,17 +16,14 @@ const App = () => {
     <ThemeContextProvider>
       <GlobalStyle />
       {IS_PREVIEW_SITE ? (
-        <>
-          {LATEST_COMMIT_SHA && !IS_DEVELOPMENT && <PreviewNotification />}
-
-          <SiteOuterContainer>
-            <SiteContainer>
-              <Header />
-              <Outlet />
-            </SiteContainer>
-            <Footer/>
-          </SiteOuterContainer>
-        </>
+        <SiteOuterContainer>
+          {!IS_DEVELOPMENT && <PreviewNotification />}
+          <SiteContainer>
+            <Header />
+            <Outlet />
+          </SiteContainer>
+          <Footer />
+        </SiteOuterContainer>
       ) : (
         <TemporaryInformation />
       )}
