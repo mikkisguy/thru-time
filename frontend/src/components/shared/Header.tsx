@@ -44,7 +44,7 @@ const StyledHeader = styled.header`
   width: 100%;
   margin: ${({ theme }) => theme.spacing.xxl} auto;
   padding-bottom: ${({ theme }) => theme.spacing.xxl};
-  border-bottom: 3px solid ${({ theme }) => theme.colors.accent};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.accent};
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
     grid-template-columns: repeat(2, 1fr);
