@@ -35,10 +35,6 @@ const TemporaryInformation = () => {
               Mikkiksen muita tekemisiä voi seurata
               <a href="https://www.twitch.tv/mikkisguy" target="_blank">
                 Twitchissä
-              </a>{" "}
-              tai
-              <a href="https://twitter.com/mikkisguy" target="_blank">
-                Twitterissä
               </a>
               .
             </Trans>
