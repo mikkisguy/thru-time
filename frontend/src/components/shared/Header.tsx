@@ -4,6 +4,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import DotFiImage from "../../assets/images/dot-fi.webp";
 import { useTranslation } from "react-i18next";
 
+/**
+ * A functional component that renders the header of the application.
+ *
+ * @return {React.JSX.Element} The JSX element representing the header.
+ */
 const Header = () => {
   const { t } = useTranslation();
 

@@ -7,6 +7,12 @@ import {
   UPDATED_ON,
 } from "../shared/constants";
 
+/**
+ * A functional component that renders a preview notification bar.
+ * It displays the title of the preview site, the last updated date, and a link to the commit on Github.
+ *
+ * @return {React.JSX.Element} The JSX element representing the preview notification bar
+ */
 const PreviewNotification = () => {
   const { t, i18n } = useTranslation();
   const isFinnish = i18n.language === TRANSLATIONS.FI;

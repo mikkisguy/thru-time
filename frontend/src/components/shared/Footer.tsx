@@ -2,6 +2,11 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+/**
+ * A functional component that renders the footer of the application.
+ *
+ * @return {React.JSX.Element} The JSX element representing the footer.
+ */
 const Footer = () => {
   const { t } = useTranslation();
 
