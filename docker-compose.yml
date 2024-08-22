@@ -1,5 +1,3 @@
-version: "3.5"
-
 services:
   thru-time-postgres:
     container_name: thru-time-postgres
@@ -62,4 +60,3 @@ services:
     ports:
       - $REACT_PORT:443
     restart: unless-stopped
-

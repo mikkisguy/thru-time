@@ -1,5 +1,3 @@
-version: "3.5"
-
 services:
   thru-time-postgres-preview:
     image: postgres:14
@@ -64,4 +62,3 @@ services:
     ports:
       - $PREVIEW_REACT_PORT:443
     restart: unless-stopped
-
