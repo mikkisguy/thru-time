@@ -12,7 +12,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN rm -rf /usr/local/bin/yarn
 RUN rm -rf /usr/local/bin/yarnpkg
-RUN npm install yarn@4 -g
+RUN npm install yarn@berry -g
 
 WORKDIR /thru-time-api 
 
