@@ -10,7 +10,7 @@ ENV TZ=Europe/Helsinki
 RUN apk add --no-cache tzdata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apk --no-cache add yarn --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+RUN npm install yarn@berry -g
 
 WORKDIR /thru-time-api
 
@@ -18,7 +18,7 @@ USER thru-time-api
 
 COPY --chown=thru-time-api:thru-time-api . .
 
-RUN yarn install --pure-lockfile
+RUN yarn install --immutable
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
