@@ -1,19 +1,19 @@
 import { format, parseISO, add } from "date-fns";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import {
-  IS_DEVELOPMENT,
   LATEST_COMMIT_SHA,
   TRANSLATIONS,
   UPDATED_ON,
 } from "../shared/constants";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+/**
+ * A functional component that renders a preview notification bar.
+ * It displays the title of the preview site, the last updated date, and a link to the commit on Github.
+ *
+ * @return {React.JSX.Element} The JSX element representing the preview notification bar
+ */
 const PreviewNotification = () => {
-  const [isPreviewBarVisible, setPreviewBarVisible] = useState(false);
-
   const { t, i18n } = useTranslation();
   const isFinnish = i18n.language === TRANSLATIONS.FI;
 
@@ -27,7 +27,7 @@ const PreviewNotification = () => {
   };
 
   return (
-    <PreviewTopBar hide={isPreviewBarVisible}>
+    <PreviewTopBar>
       <PreviewSite>{t("preview.title")}</PreviewSite>
       <span>
         {t("preview.updated")}
@@ -37,35 +37,26 @@ const PreviewNotification = () => {
         )}
       </span>
       <CommitLink
-        href={`https://github.com/mikkisguy/thru-time/commit/${
-          LATEST_COMMIT_SHA ? LATEST_COMMIT_SHA : ""
+        href={`https://github.com/mikkisguy/thru-time${
+          LATEST_COMMIT_SHA ? `/commit/${LATEST_COMMIT_SHA}` : ""
         }`}
         target="_blank"
         tabIndex={-1}
       >
         Github &rarr;
       </CommitLink>
-
-      {IS_DEVELOPMENT && (
-        <HideIcon
-          icon={faXmark}
-          size="2x"
-          onClick={() => setPreviewBarVisible(true)}
-          title="Hide preview bar"
-        />
-      )}
     </PreviewTopBar>
   );
 };
 
 export default PreviewNotification;
 
-const PreviewTopBar = styled.div<{ hide: boolean }>`
+const PreviewTopBar = styled.div`
   font: ${({ theme }) => theme.fonts.meta};
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.bodyText};
   padding: ${({ theme }) => `${theme.spacing.l} ${theme.spacing.xxxl}`};
-  display: ${({ hide }) => (hide ? "none" : "grid")};
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   width: 100%;
@@ -98,10 +89,4 @@ const CommitLink = styled.a`
   @media only screen and (max-width: 45em) {
     display: none;
   }
-`;
-
-const HideIcon = styled(FontAwesomeIcon)`
-  position: fixed;
-  right: ${({ theme }) => theme.spacing.l};
-  cursor: pointer;
 `;

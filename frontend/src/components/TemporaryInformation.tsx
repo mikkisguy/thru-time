@@ -3,6 +3,12 @@ import styled from "styled-components";
 import DarkModeToggle from "./shared/DarkModeToggle";
 import LanguageSwitcher from "./shared/LanguageSwitcher";
 
+/**
+ * A functional component that renders a temporary information page.
+ * It includes a dark mode toggle, language switcher, and links to preview and social media pages.
+ *
+ * @return {React.JSX.Element} The JSX element representing the temporary information page
+ */
 const TemporaryInformation = () => {
   const { t } = useTranslation();
 
@@ -29,10 +35,6 @@ const TemporaryInformation = () => {
               Mikkiksen muita tekemisiä voi seurata
               <a href="https://www.twitch.tv/mikkisguy" target="_blank">
                 Twitchissä
-              </a>{" "}
-              tai
-              <a href="https://twitter.com/mikkisguy" target="_blank">
-                Twitterissä
               </a>
               .
             </Trans>

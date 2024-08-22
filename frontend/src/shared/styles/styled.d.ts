@@ -17,6 +17,7 @@ type SpacingStyles = {
 
 type FontStyles = {
   h1: string;
+  h2: string;
   body: string;
   bodyBold: string;
   bodyItalic: string;
@@ -28,12 +29,14 @@ export type ColorStyles = {
   themeIcon: string;
   background: string;
   backgroundSecondary: string;
-  backgroundTernary: string;
+  backgroundTertiary: string;
   heading: string;
   bodyText: string;
   bodyTextSecondary: string;
+  bodyTextTertiary: string;
   highlight: string;
   outline: string;
+  accent: string;
   shadow: string;
   linkText: string;
   linkUnderline: string;

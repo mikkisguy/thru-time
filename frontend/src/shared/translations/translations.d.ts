@@ -22,4 +22,15 @@ export type TranslationResource = {
     blog: string;
     about: string;
   };
+  footer: {
+    copyright: string;
+    login: string;
+    source: string;
+  };
+  login: {
+    title: string;
+    username: string;
+    password: string;
+    button: string;
+  };
 };

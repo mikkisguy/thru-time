@@ -19,7 +19,7 @@ const HomeImage = styled.div`
   background-size: cover;
   width: 100%;
   height: 300px;
-  border: 3px solid ${({ theme }) => theme.colors.backgroundSecondary};
+  border: 3px solid ${({ theme }) => theme.colors.backgroundTertiary};
   border-radius: 1rem;
 
   &.dark-mode {

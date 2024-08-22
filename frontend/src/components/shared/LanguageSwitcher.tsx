@@ -3,6 +3,11 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { TRANSLATIONS } from "../../shared/constants";
 
+/**
+ * A LanguageSwitcher component that allows users to switch between Finnish and English languages.
+ *
+ * @return {React.JSX.Element} The LanguageSwitcher component
+ */
 const LanguageSwitcher = () => {
   const { t, i18n } = useTranslation();
 

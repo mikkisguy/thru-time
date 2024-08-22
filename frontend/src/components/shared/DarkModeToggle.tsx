@@ -2,18 +2,39 @@ import { faCircle, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, useContext } from "react";
 import styled from "styled-components";
-import { ThemeContext } from "../../shared/styles/styled";
+import { ColorStyles, ThemeContext } from "../../shared/styles/styled";
 import { themes } from "../../shared/styles/themes";
 import { SiteThemeContext } from "../ThemeContextProvider";
 import { isDarkMode } from "../../shared/utils";
 
+/**
+ * A Dark Mode Toggle component that allows users to switch between light and dark themes.
+ * It uses the SiteThemeContext to manage the current theme and stores it in local storage.
+ *
+ * @return {React.JSX.Element} The Dark Mode Toggle component
+ */
 const DarkModeToggle = () => {
   const { setCurrentTheme } = useContext(SiteThemeContext) as ThemeContext;
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const getTheme = () => (e.target.checked ? themes.dark : themes.light);
+  /**
+   * Handles the change event of the dark mode toggle input.
+   * Sets the current theme and stores it in local storage.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} e - The change event object
+   * @returns {void}
+   */
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    /**
+     * Returns the theme object based on the checked state of the input.
+     *
+     * @return {ColorStyles} The theme object
+     */
+    const getTheme = (): ColorStyles =>
+      e.target.checked ? themes.dark : themes.light;
 
+    // Set the current theme
     setCurrentTheme(getTheme());
+    // Store the current theme in local storage
     localStorage.setItem("current_theme", JSON.stringify(getTheme()));
   };
 

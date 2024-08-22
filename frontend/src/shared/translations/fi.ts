@@ -5,7 +5,7 @@ const finnish: TranslationResource = {
   temporary: {
     title: "Uusi Mikkis.fi tulossa!",
     main: "Päivämäärää uuden sivun julkaisulle ei ole mutta voit seurata sen kehitystä <1>esikatselusivulta</1>.",
-    socials: "Mikkiksen muita tekemisiä löytyy <1>Twitchistä</1> tai <4>Twitteristä</4>.",
+    socials: "Mikkiksen muita tekemisiä löytyy <1>Twitchistä</1>.",
   },
   preview: {
     title: "Esikatselusivu",
@@ -15,6 +15,17 @@ const finnish: TranslationResource = {
     home: "Koti",
     blog: "Blogi",
     about: "Tietoa",
+  },
+  footer: {
+    copyright: "Sivusto ja blogi",
+    login: "Kirjautuminen",
+    source: "Lähdekoodi",
+  },
+  login: {
+    title: "Kirjautuminen",
+    username: "Tunnus",
+    password: "Salasana",
+    button: "Kirjaudu sisään",
   },
 };
 

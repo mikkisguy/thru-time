@@ -4,6 +4,11 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import DotFiImage from "../../assets/images/dot-fi.webp";
 import { useTranslation } from "react-i18next";
 
+/**
+ * A functional component that renders the header of the application.
+ *
+ * @return {React.JSX.Element} The JSX element representing the header.
+ */
 const Header = () => {
   const { t } = useTranslation();
 
@@ -42,12 +47,15 @@ const StyledHeader = styled.header`
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   width: 100%;
-  margin: ${({ theme }) => theme.spacing.xxxl} auto;
+  margin: ${({ theme }) => theme.spacing.xxl} auto;
+  padding-bottom: ${({ theme }) => theme.spacing.xxl};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.accent};
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.narrow}) {
     grid-template-columns: repeat(2, 1fr);
     gap: ${({ theme }) => theme.spacing.xxl};
-    padding: 0 ${({ theme }) => theme.spacing.xxxl};
+    padding: 0 ${({ theme }) => theme.spacing.xxxl}
+      ${({ theme }) => theme.spacing.xxxl} ${({ theme }) => theme.spacing.xxxl};
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.bp.small}) {
