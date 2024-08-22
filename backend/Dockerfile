@@ -20,8 +20,7 @@ USER thru-time-api
 
 COPY --chown=thru-time-api:thru-time-api . .
 
-RUN yarn config set enableInlineHunks true
-RUN yarn install
+RUN yarn install --immutable --no-immutable-cache
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
