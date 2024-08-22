@@ -1,5 +1,7 @@
 FROM node:20-alpine
 
+RUN mkdir /thru-time-api
+
 RUN addgroup thru-time-api && \
     adduser -S -G thru-time-api thru-time-api && \
     chown -R thru-time-api /thru-time-api
