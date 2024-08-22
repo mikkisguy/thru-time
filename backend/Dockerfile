@@ -1,7 +1,5 @@
 FROM node:20-alpine
 
-RUN mkdir -p /thru-time-api/node_modules
-
 RUN addgroup thru-time-api && \
     adduser -S -G thru-time-api thru-time-api && \
     chown -R thru-time-api /thru-time-api
@@ -17,6 +15,8 @@ RUN npm install yarn@berry -g
 WORKDIR /thru-time-api 
 
 USER thru-time-api
+
+RUN rm -rf node_modules
 
 COPY --chown=thru-time-api:thru-time-api . .
 
