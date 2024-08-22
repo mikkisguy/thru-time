@@ -19,4 +19,4 @@ COPY --chown=thru-time-api:thru-time-api . .
 RUN npm install --pure-lockfile
 
 EXPOSE ${EXPRESS_PORT}
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
