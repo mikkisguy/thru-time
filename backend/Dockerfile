@@ -17,13 +17,10 @@ RUN npm install yarn@4 -g
 WORKDIR /thru-time-api 
 
 USER thru-time-api
-RUN ls -la
-
-COPY --chown=thru-time-api:thru-time-api ./package.json ./yarn.lock .
-
-RUN yarn install --immutable
 
 COPY --chown=thru-time-api:thru-time-api . .
+
+RUN yarn install --immutable
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
