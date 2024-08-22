@@ -10,17 +10,13 @@ ENV TZ=Europe/Helsinki
 RUN apk add --no-cache tzdata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN rm -rf /usr/local/bin/yarn
-RUN rm -rf /usr/local/bin/yarnpkg
-RUN npm install yarn@berry -g
-
 WORKDIR /thru-time-api 
 
 USER thru-time-api
 
 COPY --chown=thru-time-api:thru-time-api . .
 
-RUN yarn install
+RUN npm install --pure-lockfile
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
