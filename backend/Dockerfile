@@ -20,7 +20,7 @@ USER thru-time-api
 
 COPY --chown=thru-time-api:thru-time-api . .
 
-RUN yarn install --immutable --no-immutable-cache
+RUN yarn install --mode production
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
