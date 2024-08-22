@@ -11,6 +11,7 @@ RUN apk add --no-cache tzdata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN rm -rf /usr/local/bin/yarn
+RUN rm -rf /usr/local/bin/yarnpkg
 
 RUN npm install yarn@berry -g
 
