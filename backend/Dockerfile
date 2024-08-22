@@ -20,7 +20,7 @@ USER thru-time-api
 
 COPY --chown=thru-time-api:thru-time-api . .
 
-RUN yarn install
+RUN yarn install --check-cache
 
 EXPOSE ${EXPRESS_PORT}
 CMD ["yarn", "start"]
