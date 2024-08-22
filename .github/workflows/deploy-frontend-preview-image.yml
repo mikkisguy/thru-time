@@ -5,7 +5,7 @@ on:
     branches:
       - preview
     paths:
-      - 'frontend/**'
+      - "frontend/**"
 
 env:
   REGISTRY: ghcr.io
@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
-          node-version: '20.11'
+          node-version: "20.11"
 
       - name: Set current date as env variable
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S %Z')" >> $GITHUB_ENV
@@ -54,12 +54,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: ./frontend
           push: true
